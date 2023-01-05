@@ -154,7 +154,7 @@ if s.check():
     print(s.model())
 ```
 
-This returns the char values for each array position, although they will be in the order they appeared in the decompiled code (starting with array position 14). In the script below, we rearrange these array positions from 0-31, then it is a matter of converting from *char* to *ascii*. This can be done in a variety of different ways. I chose to utilise the *list, map* and *lambda* functions of Python in a small script—this could also be done with [CyberChef](https://gchq.github.io/) by choosing the ‘From Charcode’ recipe. Special thanks to @LiamEarle for assistance with some of the Python.
+This returns the char values for each array position, although they will be in the order they appeared in the decompiled code (starting with array position 14). In the script below, we rearrange these array positions from 0-31, then it is a matter of converting from *char* to *ascii*. This can be done in a variety of different ways. I chose to utilise the *list, map* and *lambda* functions of Python in a small script—this could also be done with [CyberChef](https://gchq.github.io/) by choosing the ‘From Charcode’ recipe. Special thanks to [@nullifysecurity](https://twitter.com/nullifysecurity) for assistance with some of the Python.
 
 ```python
 a1 = [None] * 32
