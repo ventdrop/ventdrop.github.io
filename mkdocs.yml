@@ -1,10 +1,15 @@
 site_name: Vent Drop
 site_url: https://ventdrop.github.io
+repo_url: https://github.com/ventdrop/
+repo_name: Vent Drop on GitHub
+
 theme:
     name: material
     custom_dir: overrides
     icon:
      logo: material/matrix
+     repo: fontawesome/brands/github-alt 
+     
     palette:
     # Palette toggle for dark mode
     - scheme: slate
