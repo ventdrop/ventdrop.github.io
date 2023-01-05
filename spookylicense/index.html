@@ -1,0 +1,986 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://ventdrop.github.io/spookylicense/">
+      
+      
+        <link rel="prev" href="../CTFs/">
+      
+      
+        <link rel="next" href="../DFIR/">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.0.2">
+    
+    
+      
+        <title>HTB - SpookyLicense [Rev] - Vent Drop</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.f56500e0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#htb-spookylicense-rev" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Vent Drop" class="md-header__button md-logo" aria-label="Vent Drop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2V2m18 2h-2V2h4v20h-4v-2h2V4M9 5h1v5h1v1H8v-1h1V6l-1 .5v-1L9 5m6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1l1-.5m-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Vent Drop
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              HTB - SpookyLicense [Rev]
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="cyan"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/ventdrop/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Vent Drop on GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        Home
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../blog/" class="md-tabs__link">
+      Blog
+    </a>
+  </li>
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../CTFs/" class="md-tabs__link md-tabs__link--active">
+        CTFs
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../DFIR/" class="md-tabs__link">
+        DFIR
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Reversing/" class="md-tabs__link">
+        Reversing
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../Threat%20Hunting/" class="md-tabs__link">
+        Threat Hunting
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Vent Drop" class="md-nav__button md-logo" aria-label="Vent Drop" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2 2h4v2H4v16h2v2H2V2m18 2h-2V2h4v20h-4v-2h2V4M9 5h1v5h1v1H8v-1h1V6l-1 .5v-1L9 5m6 8h1v5h1v1h-3v-1h1v-4l-1 .5v-1l1-.5m-6 0c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2m6-9c1.1 0 2 1.34 2 3s-.9 3-2 3-2-1.34-2-3 .9-3 2-3m0 1c-.55 0-1 .9-1 2s.45 2 1 2 1-.9 1-2-.45-2-1-2Z"/></svg>
+
+    </a>
+    Vent Drop
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/ventdrop/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Vent Drop on GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_1" type="checkbox" id="__nav_1" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1">
+          Home
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Home" data-md-level="1">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          Home
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Welcome to Vent Drop
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../blog/" class="md-nav__link">
+        Blog
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          CTFs
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="CTFs" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          CTFs
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../CTFs/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          HTB - SpookyLicense [Rev]
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        HTB - SpookyLicense [Rev]
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-analysis" class="md-nav__link">
+    Basic Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disassembler" class="md-nav__link">
+    Disassembler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decompiler" class="md-nav__link">
+    Decompiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solving-with-z3-and-python" class="md-nav__link">
+    Solving with Z3 and Python
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          DFIR
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="DFIR" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          DFIR
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DFIR/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          Reversing
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Reversing" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          Reversing
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Reversing/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" data-md-toggle="__nav_6" type="checkbox" id="__nav_6" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_6">
+          Threat Hunting
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Threat Hunting" data-md-level="1">
+        <label class="md-nav__title" for="__nav_6">
+          <span class="md-nav__icon md-icon"></span>
+          Threat Hunting
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Threat%20Hunting/" class="md-nav__link">
+        Index
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    Introduction
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#basic-analysis" class="md-nav__link">
+    Basic Analysis
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#disassembler" class="md-nav__link">
+    Disassembler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#decompiler" class="md-nav__link">
+    Decompiler
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solving-with-z3-and-python" class="md-nav__link">
+    Solving with Z3 and Python
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+
+<h1 id="htb-spookylicense-rev">HTB - SpookyLicense [Rev]</h1>
+<h2 id="introduction">Introduction</h2>
+<p>SpookyLicense is an “easy” reverse engineering challenge offered by HackTheBox, with “easy” in quotes as this one took me a considerable amount of effort. I am fairly new to reversing challenges and reverse engineering in general, but that’s what these are all about—learning new things. This was just my experience and there may be—as they say—more than one way to crack an egg. With all that being said, this is how I managed to solve the challenge.</p>
+<h2 id="basic-analysis">Basic Analysis</h2>
+<p>After unzipping the downloaded challenge, we can begin by running the <code>file</code> command to understand a little bit about the file. We can see here that the file is an ELF executable, made to run on Linux.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>All work in this section was completed within the <em><a href="https://docs.remnux.org/">remnux</a></em> linux distribution.</p>
+</div>
+<figure>
+<p><img alt="*ELF file type, made for Linux.*" src="../assets/spookylicense/Untitled.png" /></p>
+<figcaption>ELF file type, made for Linux.</figcaption>
+</figure>
+<p>We then want to take a quick peek at the static strings, which we can achieve by either running the <code>strings</code> command, <code>floss</code> tool or by opening the file in a disassembler such as <em>Cutter</em> and viewing the strings from there. We can see some interesting lines here, but nothing overly important.</p>
+<figure>
+<p><img alt="*Output shows any strings with a length of 10 or greater.*" src="../assets/spookylicense/Untitled%201.png" /></p>
+<figcaption>Output shows any strings with a length of 10 or greater.</figcaption>
+</figure>
+<p>With RE challenges, I like the run the actual file towards the start of my investigation to get a general understanding of what might be happening behind the scenes. </p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Always maintain a certain vigilance when dealing with executables or files of any kind downloaded from the internet and ensure you have proper network isolation to prevent any nasty accidents.</p>
+</div>
+<p>Below we see that the ELF file wants us to supply an argument after calling it, we also saw this in the strings output above. </p>
+<figure>
+<p><img alt="*The ELF file is asking us to supply a parameter of unknown length.*" src="../assets/spookylicense/Untitled%202.png" /></p>
+<figcaption>The ELF file is asking us to supply a parameter of unknown length.</figcaption>
+</figure>
+<p>If we run it again, this time supplying it with any parameter, what happens?</p>
+<figure>
+<p><img alt="*An error showing ‘Invalid License Format’.*" src="../assets/spookylicense/Untitled%203.png" /></p>
+<figcaption>An error showing ‘Invalid License Format’.</figcaption>
+</figure>
+<h2 id="disassembler">Disassembler</h2>
+<p>This would be a good point to open up the file in a disassembler. My personal favourites are <strong>Cutter</strong> (GUI version of r2) and the NSA’s <strong>Ghidra</strong> (both are installed in remnux by default, but you can also install these on FlareVM or a VM of your choosing). <strong>Ida Pro</strong> is another option, but this will incur a significant financial cost for a pro license; for our purposes the two I have mentioned will suffice. To run either of the aforementioned disassemblers, we simply type the name in the terminal followed by &amp; (to background the process) eg <code>cutter&amp;</code>. </p>
+<p>This will open the following dialog, where we will keep the default settings and open our file, then hit ‘Ok’. </p>
+<figure>
+<p><img alt="*Default load options for Cutter.*" src="../assets/spookylicense/Untitled%204.png" /><br></p>
+<figcaption>Default load options for Cutter.</figcaption>
+</figure>
+<p>On quick inspection of this file's ‘Functions’ list, we see the main function is helpfully still named <code>main</code>. We can double click this function to display it’s contents on the right. I like to start by viewing in ‘Graph’ mode to get a decent understanding of the application flow before I investigate further. </p>
+<figure>
+<p><img alt="*Function list of ‘spookylicence’*" src="../assets/spookylicense/Untitled%205.png" /><br></p>
+<figcaption>Function list of ‘spookylicence’</figcaption>
+</figure>
+<p>Looking at the main function in graph mode, we find our first piece of vital information about this file. In the middle-right graph block, we see a call to <code>strlen</code> (string length). It is using the <code>cmp</code> (compare) instruction to compare the <code>rax</code> register to <code>0x20</code>, which is 32 in decimal (to do this conversion in Cutter, right click the value 0x20, then select ‘Set Immediate Base to... -&gt; Decimal’). We can then see another <code>je</code> instruction (jump if equal) to the block on the far-right (green arrow). If not equal, the code flow moves to the left of the two blocks and will output the string ‘<em>Invalid License Format</em>’—we saw this earlier! Just from this view alone, we can surmise that the license key required is 32 characters long. Let’s test this. </p>
+<figure>
+<p><img alt="*Screenshot of ‘main’ function beginning. Right side shows the interesting branch. Screenshot has been trimmed to fit.* " src="../assets/spookylicense/Untitled%206.png" /></p>
+<figcaption>Screenshot of ‘main’ function beginning. Right side shows the interesting branch. Screenshot has been trimmed to fit.</figcaption>
+</figure>
+<p>When supplying a licence of 32 characters in length, we receive a new error, ‘<em>License Invalid</em>’. In the screenshot above, we had satisfied the middle-right code block and taken the jump to <code>0x11c7</code>, but now  we are not satisfying the next condition (far-right block, comparison of dl,al registers) and are therefore taking the <code>jne</code> (jump if not equal) condition to address <code>0x1889</code>. 0x1889 is a string of ‘<em>Licence Invalid</em>’—we have now confirmed our above theory to be correct.</p>
+<figure>
+<p><img alt="*Running the program with a 32 character key and receiving a new error.*" src="../assets/spookylicense/Untitled%207.png" /></p>
+<figcaption>Running the program with a 32 character key and receiving a new error.</figcaption>
+</figure>
+<p></figure markdown>
+<img alt="*The code at 0x1889 showing the error we received. This is the ‘Disassembly’ view of Cutter. To view this, click the relevant menu tab or hit space.* " src="../assets/spookylicense/Untitled%208.png" /></p>
+<figcaption>The code at 0x1889 showing the error we received. This is the ‘Disassembly’ view of Cutter. To view this, click the relevant menu tab or hit space.</figcaption>
+</figure>
+<h2 id="decompiler">Decompiler</h2>
+<p>Now that we know a little bit about the desired license argument length, we are still left with one crucial unanswered question—what is the licence key? The next logical step for us is to view the decompiled output of the main function. Both Cutter and Ghidra do an excellent job of decompiling this. Here is what the main function looks like in Cutter’s decompiler:</p>
+<figure>
+<p><img alt="*Decompiled main function.*" src="../assets/spookylicense/Untitled%209.png" /></p>
+<figcaption>Decompiled main function.</figcaption>
+</figure>
+<p>Decompilers will try their best to name variables for you, as you can see above with “pcVar1”; they will also attempt to translate assembly as close as they can to original source code. In the context of the above code, pcVar1 is being referenced with array positions (in square brackets) in multiple character formats. The first if statement is checking if we provided an argument. The second if statement checks for the length of 32 characters as we found before. The next part is the crux of the challenge—there is a set of 32 individual lines of calculations and comparisons; these cannot be done (as far as I know) by a human as we do not know the values of the array positions. </p>
+<p>If we think back to our initial graph view, these comparisons are represented in the far-right assembly branch (these are not fully pictured above, they continue downwards 31 more times). Initially, I attempted to load the file in a debugger and set breakpoints at each <code>cmp dl, al</code> instruction to try and enumerate the key this way, but this failed. Eventually, I decided to research the internet for something that might be suited to solve this problem. That’s when I came across <a href="https://github.com/Z3Prover/z3">Microsoft Research’s Z3</a> (<a href="https://pypi.org/project/z3-solver/">python package</a>). With some help from a few resources, such as <a href="https://wiki.bi0s.in/reversing/analysis/dynamic/linux/z3/">bi0s wiki</a>, the following solution was made. </p>
+<h2 id="solving-with-z3-and-python">Solving with Z3 and Python</h2>
+<p>We can’t simply copy-paste the decompiled code into our Python script. Once copied from Cutter/Ghidra, we need to perform a few actions in our solving script: </p>
+<ul>
+<li>Convert each non-decimal/non-hex character to decimal, examples include ‘F’, ‘{’, ‘p’ etc. and remove (char) tags</li>
+<li>Before running script, <code>pip install z3-solver</code></li>
+<li>Any lines that referenced the variable itself (eg: * *pcVar1) need to be fixed to call array position 0 — this would be lines 4, 18, 24</li>
+<li>Remove number of parentheses so that each line is able to be calculated independently by z3;</li>
+</ul>
+<p>For example, the first line of interest:  </p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">if</span><span class="w"> </span><span class="p">((((((((</span><span class="n">pcVar1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="p">(</span><span class="kt">char</span><span class="p">)((</span><span class="n">pcVar1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">pcVar1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="sc">&#39;F&#39;</span><span class="p">))</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+</code></pre></div>
+<p>becomes (with the prefix addition of <em>s.add</em> from z3):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="mi">70</span><span class="p">))</span>
+</code></pre></div>
+<p>Our final z3 solving script after completing above tasks (snipped to fit):</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">## Using Microsoft&#39;s Z3 Theorem Prover to solve non-human guessable calculations.</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="c1">## Note that Ghidra’s stock variable *pcVar1* has been renamed *a1* for readability in our script</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">z3</span> <span class="kn">import</span> <span class="o">*</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">a1</span> <span class="o">=</span> <span class="p">[</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[0]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[1]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[2]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="o">...</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[30]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[31]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">BitVec</span><span class="p">(</span><span class="s2">&quot;a1[32]&quot;</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="p">]</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="n">s</span><span class="o">=</span><span class="n">Solver</span><span class="p">()</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="o">+</span> <span class="mi">70</span><span class="p">))</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x16</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="mi">123</span><span class="p">))</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="mi">28</span><span class="p">))</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x19</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x17</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x11</span><span class="p">]</span> <span class="o">+</span> <span class="mi">23</span><span class="p">)))</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1b</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x16</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x15</span><span class="p">))</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1c</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mi">9</span><span class="p">))</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">==</span> <span class="mi">112</span><span class="p">)</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x13</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x15</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x80</span><span class="p">))</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xf</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">])</span> <span class="o">+</span> <span class="mi">48</span><span class="p">)))</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x1b</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="mi">45</span><span class="p">)))</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x65</span><span class="p">))</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">+</span> <span class="mi">124</span><span class="p">))</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1f</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x1f</span><span class="p">])</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x79</span><span class="p">)))</span>
+<a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x1f</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">+</span> <span class="mi">4</span><span class="p">))</span>
+<a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x18</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x11</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x15</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x17</span><span class="p">))</span>
+<a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span> <span class="o">+</span> <span class="mi">44</span><span class="p">)))</span>
+<a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">10</span><span class="p">])</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">])</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x24</span><span class="p">))</span>
+<a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1f</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1a</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x1b</span><span class="p">)))</span>
+<a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x7d</span><span class="p">)))</span>
+<a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1b</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xe</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+<a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1e</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x15</span><span class="p">]</span> <span class="o">+</span> <span class="mi">68</span><span class="p">))</span>
+<a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">(((</span><span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x13</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x2c</span><span class="p">)))</span>
+<a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x1a</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x15</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x7f</span><span class="p">))</span>
+<a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x17</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">+</span> <span class="mi">88</span><span class="p">)))</span>
+<a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x13</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">]</span> <span class="o">*</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xd</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x17</span><span class="p">)))</span>
+<a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">6</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x16</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="mi">83</span><span class="p">))</span>
+<a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xc</span><span class="p">]</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1a</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x72</span><span class="p">)))</span>
+<a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">==</span> <span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span> <span class="o">+</span> <span class="mi">51</span><span class="p">)))</span>
+<a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1e</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">8</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x1d</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x4d</span><span class="p">))</span>
+<a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x14</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="o">-</span><span class="mh">0x4c</span><span class="p">))</span>
+<a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x10</span><span class="p">]</span> <span class="o">-</span> <span class="n">a1</span><span class="p">[</span><span class="mi">7</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0x11</span><span class="p">]</span> <span class="o">+</span> <span class="mi">102</span><span class="p">))</span>
+<a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a><span class="n">s</span><span class="o">.</span><span class="n">add</span><span class="p">((</span><span class="n">a1</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x15</span><span class="p">])</span> <span class="o">==</span> <span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="mh">0xb</span><span class="p">]</span> <span class="o">+</span> <span class="n">a1</span><span class="p">[</span><span class="mh">0x12</span><span class="p">]</span> <span class="o">+</span> <span class="mi">43</span><span class="p">))</span>
+<a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a><span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">check</span><span class="p">():</span>
+<a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">model</span><span class="p">())</span>
+</code></pre></div>
+<p>This returns the char values for each array position, although they will be in the order they appeared in the decompiled code (starting with array position 14). In the script below, we rearrange these array positions from 0-31, then it is a matter of converting from <em>char</em> to <em>ascii</em>. This can be done in a variety of different ways. I chose to utilise the <em>list, map</em> and <em>lambda</em> functions of Python in a small script—this could also be done with <a href="https://gchq.github.io/">CyberChef</a> by choosing the ‘From Charcode’ recipe. Special thanks to <a href="https://twitter.com/nullifysecurity">@nullifysecurity</a> for assistance with some of the Python.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">a1</span> <span class="o">=</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">32</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">a1</span><span class="p">[</span><span class="mi">14</span><span class="p">]</span> <span class="o">=</span> <span class="mi">48</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">a1</span><span class="p">[</span><span class="mi">24</span><span class="p">]</span> <span class="o">=</span> <span class="mi">51</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">a1</span><span class="p">[</span><span class="mi">15</span><span class="p">]</span> <span class="o">=</span> <span class="mi">48</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="o">...</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="n">a1</span><span class="p">[</span><span class="mi">23</span><span class="p">]</span> <span class="o">=</span> <span class="mi">67</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="n">a1</span><span class="p">[</span><span class="mi">18</span><span class="p">]</span> <span class="o">=</span> <span class="mi">101</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">a1</span><span class="p">[</span><span class="mi">9</span><span class="p">]</span> <span class="o">=</span> <span class="mi">112</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="n">result</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">a1</span><span class="p">)):</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>    <span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>        <span class="n">result</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>        <span class="k">pass</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+<a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a><span class="n">decoded</span> <span class="o">=</span> <span class="p">[]</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a><span class="n">decoding_two</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="nb">chr</span><span class="p">(</span><span class="n">a</span><span class="p">),</span> <span class="n">result</span><span class="p">)))</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">decoding_two</span><span class="p">)</span>
+</code></pre></div>
+<p>Here’s our final result. This was a fun one and I learned something new, hope you did too!</p>
+<figure>
+<p><img alt="*Here’s the flag.*" src="../assets/spookylicense/Untitled%2010.png" /></p>
+<figcaption>Here’s the output of our script showing a successful flag.</figcaption>
+</figure>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <a href="#" class="md-top md-icon" data-md-component="top" hidden>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+            Back to top
+          </a>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/ventdrop" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg>
+    </a>
+  
+    
+    
+      
+      
+    
+    <a href="https://github.com/ventdrop" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.instant", "navigation.tracking", "navigation.tabs", "navigation.tabs.sticky", "navigation.expand", "navigation.top", "search.highlight", "content.code.copy"], "search": "../assets/javascripts/workers/search.12658920.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.5cf534bf.min.js"></script>
+      
+    
+  </body>
+</html>
