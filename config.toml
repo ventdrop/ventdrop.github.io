@@ -1,0 +1,44 @@
+baseURL = 'http://ventdrop.github.io/'
+languageCode = 'en-us'
+title = 'an infosec blog'
+theme = "m10c"
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    identifier = "writeups"
+    name = "WriteUps"
+    url = "/tags/writeups/"
+    weight = 3
+
+[params]
+  author = "Rick Gatenby"
+  avatar = "/avatar.jpg"
+  description = "cybersecurity professional, orioles fan, novelty claw machine enjoyer"
+  menu_item_separator = " - "
+  
+  [[params.social]]
+    icon = "github"
+    name = "Github"
+    url = "https://github.com/ventdrop"
+  [[params.social]]
+    icon = "twitter"
+    name = "Twitter"
+    url = "https://twitter.com/ventdrop"
+
+
+  [params.style]
+  darkestColor = "#242930"
+  darkColor = "#353b43"
+  lightColor = "#afbac4"
+  lightestColor = "#ffffff"
+  primaryColor = "#57cc8a"
