@@ -2,7 +2,7 @@
 title: "HTB - SpookyLicense [reversing]"
 date: 2023-04-07T16:30:26+10:00
 tags: ['reverse_engineering', 'hackthebox', 'writeups']
-draft: true
+draft: false
 ---
 
 ## Introduction

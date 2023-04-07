@@ -2,7 +2,7 @@
 title: "HTB - Pandora's Bane [forensics]"
 date: 2023-04-07T18:23:44+10:00
 tags: ['forensics', 'hackthebox', 'writeups']
-draft: true
+draft: false
 ---
 
 ## Introduction
