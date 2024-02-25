@@ -95,6 +95,7 @@ Pressing `F9` to reload rundll32.exe, then `F9` again to break on the EntryPoint
 ![We are now in ringsbeef.dll](/static/strelastealer/Untitled%2027.png)
 
 If we run this again without any breakpoints, debugging will stop and the program will disappear; there is something happening in the execution after this point that appears to be causing the program to terminate; this could be anti-debugging or it could be something else. In order to get around this in a timely fashion, we can set a breakpoint on VirtualAlloc by typing in the Command window: `bp VirtualAlloc` (note that this needs to be done within the context of ringsbeef.dll and not rundll32.exe). We then hit `F9` again until we come to VirtualAlloc. Once here, we hit enter to enter this call and then click the button for `Execute till return` twice. Execution should now continue without terminating; this will allow us to inspect the memory of the rundll32.exe process using Process Hacker. Opening up Process Hacker as an administrator, then right clicking rundll32.exe and selecting properties, we click the `Memory` tab. Once in here, we can select `strings...` tab. 
+
 ![rundll32.exe strings section of Process Hacker](/static/strelastealer/Untitled%2028.png)
 
 Once here, we can now see the deobfuscated/decrypted strings in memory from ringsbeef.dll. Note here that we now have some network IOC’s in the form of:
@@ -144,4 +145,4 @@ Worth also looking at Sysmon Type 11, File Creation logs:
 
 ## Appendix
 
-I decided to [run the extracted .dll in the same sandbox][https://app.any.run/tasks/4e61bb73-e920-488d-98c2-514c0dabca70] with the correct command line parameters to see if we could get any further information; unfortunately execution was not successful. Would love to hear from anyone who decides to statically analyse this sample :)
+I decided to [run the extracted dll in the same sandbox](https://app.any.run/tasks/4e61bb73-e920-488d-98c2-514c0dabca70) with the correct command line parameters to see if we could get any further information; unfortunately execution was not successful. Would love to hear from anyone who decides to statically analyse this sample :)
