@@ -16,7 +16,7 @@ This file showed as no threats detected in the sandbox. The .zip file not presen
 [https://app.any.run/tasks/fd24f96b-532b-422e-90b8-bdc4b4adfe14/#](https://app.any.run/tasks/fd24f96b-532b-422e-90b8-bdc4b4adfe14/#) 
 Despite it showing no malicious activity (note the .dll error message box below which may be a deception technique or a legitimate error), a quick look at the AnyRun process tree shows some interesting things; we’ll keep this in mind for our analysis. 
 
-![Untitled](Strela%20Stealer%20dfd3d0aafbbd425faa3b0e8756486822/Untitled.png)
+![Untitled](/static/strelastealer/Untitled.png)
 
 ![Untitled](/static/strelastealer/Untitled%201.png)
 
