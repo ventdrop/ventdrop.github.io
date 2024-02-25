@@ -6,7 +6,17 @@
     <description>Recent content on an infosec blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 25 Apr 2023 22:31:26 +1100</lastBuildDate><atom:link href="http://ventdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 25 Feb 2024 23:10:37 +1100</lastBuildDate><atom:link href="http://ventdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Strela Stealer [IR/Malware Analysis]</title>
+      <link>http://ventdrop.github.io/posts/strelastealer/</link>
+      <pubDate>Sun, 25 Feb 2024 23:10:37 +1100</pubDate>
+      
+      <guid>http://ventdrop.github.io/posts/strelastealer/</guid>
+      <description>Strela Stealer I decided to grab a random malware sample from any.run and have a bit of a poke around. The file I chose from public submissions has the following details:
+MD5: 09a3293c8e85921340f2e75cf398b0a5 FileName: 2585747226036.zip Extracted FileName: 2585747226036.js This file showed as no threats detected in the sandbox. Despite it showing no malicious activity (note the .dll error message box below which may be a deception technique or a legitimate error), a quick look at the AnyRun process tree shows some interesting things; we’ll keep this in mind for our analysis.</description>
+    </item>
+    
     <item>
       <title>HTB - SpookyLicense [reversing]</title>
       <link>http://ventdrop.github.io/posts/spookylicense/</link>
