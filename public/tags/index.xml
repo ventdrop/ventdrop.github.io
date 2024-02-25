@@ -5,6 +5,43 @@
     <link>http://ventdrop.github.io/tags/</link>
     <description>Recent content in Tags on an infosec blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://ventdrop.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Apr 2023 22:31:26 +1100</lastBuildDate><atom:link href="http://ventdrop.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>hackthebox</title>
+      <link>http://ventdrop.github.io/tags/hackthebox/</link>
+      <pubDate>Tue, 25 Apr 2023 22:31:26 +1100</pubDate>
+      
+      <guid>http://ventdrop.github.io/tags/hackthebox/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reverse_engineering</title>
+      <link>http://ventdrop.github.io/tags/reverse_engineering/</link>
+      <pubDate>Tue, 25 Apr 2023 22:31:26 +1100</pubDate>
+      
+      <guid>http://ventdrop.github.io/tags/reverse_engineering/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>writeups</title>
+      <link>http://ventdrop.github.io/tags/writeups/</link>
+      <pubDate>Tue, 25 Apr 2023 22:31:26 +1100</pubDate>
+      
+      <guid>http://ventdrop.github.io/tags/writeups/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>forensics</title>
+      <link>http://ventdrop.github.io/tags/forensics/</link>
+      <pubDate>Fri, 07 Apr 2023 18:23:44 +1000</pubDate>
+      
+      <guid>http://ventdrop.github.io/tags/forensics/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>

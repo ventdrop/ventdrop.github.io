@@ -5,6 +5,26 @@
     <link>http://ventdrop.github.io/</link>
     <description>Recent content on an infosec blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://ventdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language>
+    <lastBuildDate>Tue, 25 Apr 2023 22:31:26 +1100</lastBuildDate><atom:link href="http://ventdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>HTB - SpookyLicense [reversing]</title>
+      <link>http://ventdrop.github.io/posts/spookylicense/</link>
+      <pubDate>Tue, 25 Apr 2023 22:31:26 +1100</pubDate>
+      
+      <guid>http://ventdrop.github.io/posts/spookylicense/</guid>
+      <description>Introduction SpookyLicense is an “easy” reverse engineering challenge offered by HackTheBox, with “easy” in quotes as this one took me a considerable amount of effort. I am fairly new to reversing challenges and reverse engineering in general, but that’s what these are all about—learning new things. This was just my experience and there may be—as they say—more than one way to crack an egg. With all that being said, this is how I managed to solve the challenge.</description>
+    </item>
+    
+    <item>
+      <title>HTB - Pandora&#39;s Bane [forensics]</title>
+      <link>http://ventdrop.github.io/posts/pandorasbane/</link>
+      <pubDate>Fri, 07 Apr 2023 18:23:44 +1000</pubDate>
+      
+      <guid>http://ventdrop.github.io/posts/pandorasbane/</guid>
+      <description>Introduction This was the final Forensics category challenge in HackTheBox&amp;rsquo;s recent CTF, Cyber Apocalypse — The Cursed Mission.
+My notes won&amp;rsquo;t be super detailed here as I didn&amp;rsquo;t do a whole lot of documentation during the CTF, so this is more just snippets of methodologies applied. This one felt like a speedrun compared to how much time I spent getting stuck on the final decryption of Interstellar C2 (which I could not do, btw).</description>
+    </item>
+    
   </channel>
 </rss>

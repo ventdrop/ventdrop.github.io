@@ -3,9 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://ventdrop.github.io/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
   </url><url>
-    <loc>http://ventdrop.github.io/categories/</loc>
+    <loc>http://ventdrop.github.io/tags/hackthebox/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/posts/spookylicense/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/posts/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/tags/reverse_engineering/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
   </url><url>
     <loc>http://ventdrop.github.io/tags/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/tags/writeups/</loc>
+    <lastmod>2023-04-25T22:31:26+11:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/tags/forensics/</loc>
+    <lastmod>2023-04-07T18:23:44+10:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/posts/pandorasbane/</loc>
+    <lastmod>2023-04-07T18:23:44+10:00</lastmod>
+  </url><url>
+    <loc>http://ventdrop.github.io/categories/</loc>
   </url>
 </urlset>
