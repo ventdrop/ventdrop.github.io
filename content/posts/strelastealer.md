@@ -1,15 +1,13 @@
 ---
-title: "StrelaStrealer [IR/Malware Analysis]"
-date: 2024-04-07T16:30:26+10:00
-tags: ['malware_analysis', 'incident_response', 'threat_hunting']
-draft: false
+title: "Strelastealer [IR/Malware Analysis]"
+date: 2024-02-25T22:49:49+11:00
+tags: ['IR', 'malware_analysis']
+draft: true
 ---
 
 ## Strela Stealer
 
-Malware Analysis
-
-I decided to grab a random sample from [any.run](http://any.run) and have a dig in to it. The file has the following details:
+I decided to grab a random malware sample from [any.run](http://any.run) and have a bit of a poke around. The file I chose from public submissions has the following details:
 MD5: 09a3293c8e85921340f2e75cf398b0a5
 FileName: 2585747226036.zip
 Extracted FileName: 2585747226036.js
@@ -18,7 +16,7 @@ This file showed as no threats detected in the sandbox. The .zip file not presen
 [https://app.any.run/tasks/fd24f96b-532b-422e-90b8-bdc4b4adfe14/#](https://app.any.run/tasks/fd24f96b-532b-422e-90b8-bdc4b4adfe14/#) 
 Despite it showing no malicious activity (note the .dll error message box below which may be a deception technique or a legitimate error), a quick look at the AnyRun process tree shows some interesting things; we’ll keep this in mind for our analysis. 
 
-![Untitled](/static/strelastealer/Untitled.png)
+![Untitled](Strela%20Stealer%20dfd3d0aafbbd425faa3b0e8756486822/Untitled.png)
 
 ![Untitled](/static/strelastealer/Untitled%201.png)
 
