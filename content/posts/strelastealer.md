@@ -146,3 +146,5 @@ Worth also looking at Sysmon Type 11, File Creation logs:
 ## Appendix
 
 I decided to [run the extracted dll in the same sandbox](https://app.any.run/tasks/4e61bb73-e920-488d-98c2-514c0dabca70) with the correct command line parameters to see if we could get any further information; unfortunately execution was not successful. Would love to hear from anyone who decides to statically analyse this sample :)
+
+Update 14/07/24: [Unit42 did a write-up on this malware!](https://unit42.paloaltonetworks.com/strelastealer-campaign/)
