@@ -95,6 +95,7 @@ By the time I got to writing this part, the malicious site was serving a 404. To
 ## Mitigation, Threat Hunting and Detection Ideas 
 This would probably light most modern EDR's up like a Christmas tree, but in case you are reading this and don't have a big budget:
 
+- Check out the 'Crowdsourced Sigma Rules' section for the sample on VT (you will need to log in)
 - Consider blocking `.chm` files from your enterprise e-mail gateway, although Outlook should already block this attachment by default
 - Investigate usage of `hh.exe`, paying attention to suspiciously named files and file locations. Consider writing detections with `hh.exe` and other LOLBIN child processes
 - Monitor creation of files in and under `C:\Users\Public`, this is unusual 
