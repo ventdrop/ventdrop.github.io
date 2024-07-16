@@ -1,6 +1,7 @@
 ---
 title: "Strela Stealer [IR/Malware Analysis]"
 date: 2024-02-25T23:10:37+11:00
+tags: ['reverse_engineering', 'DFIR']
 draft: false
 ---
 
