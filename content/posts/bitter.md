@@ -1,7 +1,7 @@
 ---
 title: "Bitter [IR/Malware Analysis]"
 date: 2024-07-15T18:24:57+10:00
-tags: ['reverse_engineering', 'DFIR']
+tags: ['reverse_engineering', 'DFIR', 'Threat Hunting']
 draft: false
 ---
 
@@ -92,7 +92,9 @@ By the time I got to writing this part, the malicious site was serving a 404. To
 
 - 4698, 'A scheduled task was created' (WinEvtLog - 'Security'), we also see the maliciously created task in Task Scheduler 
 
-## Mitigation and Detection Ideas 
+## Mitigation, Threat Hunting and Detection Ideas 
+This would probably light most modern EDR's up like a Christmas tree, but in case you are reading this and don't have a big budget:
+
 - Consider blocking `.chm` files from your enterprise e-mail gateway, although Outlook should already block this attachment by default
 - Investigate usage of `hh.exe`, paying attention to suspiciously named files and file locations. Consider writing detections with `hh.exe` and other LOLBIN child processes
 - Monitor creation of files in and under `C:\Users\Public`, this is unusual 
