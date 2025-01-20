@@ -125,7 +125,7 @@ Delay: 3
 Botnet: Default
 ```
 
-Googling the C2 turns up some other sandbox reports, notably [Triage](https://tria.ge/241122-jwjwaaxjax) which actually extracted the config automatically from `Sat.bat`. We could have also done dynamic analysis, note however that ASyncRAT does have some basic anti-analysis features and checks. This particular sample we analysed appears to have been contructed with the [3Losh crypter](https://blog.talosintelligence.com/rat-campaign-targets-latin-america/).
+Googling the C2 turns up some other sandbox reports, notably [Triage](https://tria.ge/241122-jwjwaaxjax) which actually extracted the config automatically from `Sat.bat`. We could have also done dynamic analysis, note however that ASyncRAT does have some basic anti-analysis features and checks. This particular sample we analysed appears to have been constructed with the [3Losh crypter](https://blog.talosintelligence.com/rat-campaign-targets-latin-america/).
 
 ## Prevent / Detect / Hunt
 AntiVirus and EDR *should* provide alerts on these malicious samples, but here are some additional thoughts and prevention/detection/hunt ideas.
