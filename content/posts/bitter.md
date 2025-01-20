@@ -1,7 +1,7 @@
 ---
 title: "Bitter [IR/Malware Analysis]"
 date: 2024-07-15T18:24:57+10:00
-tags: ['reverse_engineering', 'DFIR', 'Threat Hunting']
+tags: ['reverse_engineering', 'DFIR', 'threat_hunting']
 draft: false
 ---
 
