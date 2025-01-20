@@ -1,5 +1,5 @@
 ---
-title: "ASyncRAT"
+title: "ASyncRAT [IR/Malware Analysis]"
 date: 2025-01-19T14:55:40+11:00
 tags: ['reverse_engineering', 'DFIR', 'threat_hunting']
 draft: false
