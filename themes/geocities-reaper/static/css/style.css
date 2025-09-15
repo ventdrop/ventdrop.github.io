@@ -217,6 +217,11 @@ body {
   margin: 15px 0;
 }
 
+.ascii-art {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
 .marquee-text {
   animation: marquee 10s linear infinite;
   white-space: nowrap;
