@@ -7,13 +7,9 @@
     <br>
     another infosec blog
   </h2>    
-  {{ if .Site.Params.welcome_message }}
+    {{ if .Site.Params.welcome_message }}
     <div class="welcome-message">
-     <pre>{{ .Site.Params.welcome_message }}</pre>
-    </div>
-    {{ else }}
-    <div class="welcome-message">
-      <p class="marquee-text">Welcome to my totally awesome homepage! Check out my cool stuff below!</p>
+      <pre class="ascii-art">{{ .Site.Params.welcome_message | safeHTML }}</pre>
     </div>
     {{ end }}
     
