@@ -217,6 +217,19 @@ body {
   margin: 15px 0;
 }
 
+.welcome-gif-container {
+  max-width: 100%; 
+  text-align: center;
+  margin: 0 auto; 
+}
+
+.welcome-gif-container img {
+  display: block; 
+  margin: 0 auto; 
+  max-width: 100%;
+  height: auto;
+}
+
 .ascii-art {
   white-space: pre-wrap;
   word-wrap: break-word;
