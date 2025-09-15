@@ -1,9 +1,25 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>{{ if .Title }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
-
-<!-- Static CSS -->
-<link rel="stylesheet" href="{{ "css/retro.css" | relURL }}">
-
-<!-- Optional favicon -->
-<link rel="icon" type="image/png" href="{{ "public/favicon.png" | relURL }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ .Site.Title }}{{ else }}{{ .Title }} - {{ .Site.Title }}{{ end }}</title>
+  
+  <!-- Meta tags -->
+  <meta name="description" content="{{ if .Description }}{{ .Description }}{{ else }}{{ .Site.Params.description }}{{ end }}">
+  <meta name="keywords" content="90s, retro, geocities, {{ .Site.Params.keywords | default "web, blog" }}">
+  <meta name="author" content="{{ .Site.Params.author | default .Site.Title }}">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+  
+  <!-- Classic 90s meta tags -->
+  <meta name="generator" content="Hugo GeoCities Reaper Theme">
+  <meta name="rating" content="general">
+  
+  <!-- Web ring meta (classic 90s feature) -->
+  {{ if .Site.Params.webring }}
+  <meta name="webring" content="{{ .Site.Params.webring }}">
+  {{ end }}
+</head>

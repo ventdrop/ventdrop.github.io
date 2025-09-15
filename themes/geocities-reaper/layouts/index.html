@@ -9,10 +9,10 @@
   </h2>    
     {{ if .Site.Params.welcome_message }}
     <div class="welcome-message">
-      <pre class="ascii-art">{{ .Site.Params.welcome_message | safeHTML }}</pre>
+      <img src="{{ .Site.Params.welcome_message | relURL }}" alt="Welcome message in ASCII art">
     </div>
     {{ end }}
-    
+        
     <div class="new-feature">
       <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" onerror="this.style.display='none'">
       <span class="blink">NEW! Updated with fresh content!</span>

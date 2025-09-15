@@ -222,6 +222,49 @@ body {
   word-wrap: break-word;
   overflow-wrap: break-word;
 }
+
+/* Basic container styling */
+.winamp-player {
+  background-color: #333;
+  border: 2px solid #555;
+  color: #c9c9c9;
+  font-family: 'Pixelated MS Sans Serif', 'Courier New', monospace;
+  padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content; 
+}
+
+/* Header and track title */
+.winamp-header {
+  background-color: #1a1a1a;
+  border: 1px solid #000;
+  padding: 5px;
+}
+
+/* Button styling */
+.control-btn {
+  background-color: #555;
+  border: 1px solid #777;
+  color: #fff;
+  font-weight: bold;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.control-btn:hover {
+  background-color: #666;
+}
+
+/* Volume slider styling */
+.winamp-volume input[type="range"] {
+  -webkit-appearance: none;
+  background: #1a1a1a;
+  border: 1px solid #000;
+  height: 8px;
+  width: 100%;
+}
+
 .marquee-text {
   animation: marquee 10s linear infinite;
   white-space: nowrap;

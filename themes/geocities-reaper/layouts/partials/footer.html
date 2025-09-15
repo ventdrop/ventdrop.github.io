@@ -1,0 +1,47 @@
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-section">
+      <h3 class="footer-title">Contact Me!</h3>
+      <p>Twitter: "@ventdrop"</p>
+      {{ if .Site.Params.icq }}
+      <p>ICQ: {{ .Site.Params.icq }}</p>
+      {{ end }}
+    </div>
+    
+    <div class="footer-section">
+      <h3 class="footer-title">💻 Best Viewed</h3>
+      <p>Netscape Navigator 4.0+</p>
+      <p>800x600 Resolution</p>
+      <p>16-bit Color</p>
+    </div>
+  </div>
+  
+  <div class="footer-bottom">
+    <p class="copyright">
+      <span class="blink">©{{ now.Year }} {{ .Site.Title }}</span>
+    </p>
+    
+    <div class="badges">
+      <img src="{{ "images/made-with-notepad.gif" | relURL }}" alt="Made with Notepad" onerror="this.style.display='none'">
+      <img src="{{ "images/netscape.gif" | relURL }}" alt="Best viewed with Netscape" onerror="this.style.display='none'">
+      <img src="{{ "images/geocities.gif" | relURL }}" alt="GeoCities" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+    <div class="winamp-player">
+        <div class="winamp-header">
+            <span class="track-title"></span>
+        </div>
+        <div class="winamp-controls">
+            <button id="play-pause-btn" class="control-btn play">▶</button>
+            <button id="stop-btn" class="control-btn stop">■</button>
+        </div>
+        <div class="winamp-time">
+            <span id="current-time">0:00</span> / <span id="total-time">2:12</span>
+        </div>
+        <div class="winamp-volume">
+            <button id="mute-btn" class="control-btn volume">🔊</button>
+        </div>
+    </div>
+        <audio id="audio-source" src="{{ "nmbd_loop.mp3" | relURL }}" preload="auto"></audio>
+</footer>

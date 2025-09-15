@@ -33,23 +33,7 @@ theme = "geocities-reaper"
   description = "^^"
   location = "Cyberspace"
   mood = "pensive"
-  welcome_message = """                                                                              
-                                                                              
-                                               ___                            
-                                               `MM                            
-                              /                 MM                            
-____    ___  ____  ___  __   /M             ____MM ___  __   _____  __ ____   
-`MM(    )M' 6MMMMb `MM 6MMb /MMMMM         6MMMMMM `MM 6MM  6MMMMMb `M6MMMMb  
- `Mb    d' 6M'  `Mb MMM9 `Mb MM           6M'  `MM  MM69 " 6M'   `Mb MM'  `Mb 
-  YM.  ,P  MM    MM MM'   MM MM           MM    MM  MM'    MM     MM MM    MM 
-   MM  M   MMMMMMMM MM    MM MM           MM    MM  MM     MM     MM MM    MM 
-   `Mbd'   MM       MM    MM MM           MM    MM  MM     MM     MM MM    MM 
-    YMP    YM    d9 MM    MM YM.  ,       YM.  ,MM  MM     YM.   ,M9 MM.  ,M9 
-     M      YMMMM9 _MM_  _MM_ YMMM9        YMMMMMM__MM_     YMMMMM9  MMYMMM9  
-                                                                     MM       
-                                                                     MM       
-                                                                    _MM_      
-  """
+  welcome_message = "images/hackerman.webp"
   quote = "... That no single, individual moment is in and of itself unendurable."
   quote_author = "David Foster Wallace, Infinite Jest"
   about = "cybersecurity professional, orioles/ravens fan, musician, novelty claw machine enjoyer"

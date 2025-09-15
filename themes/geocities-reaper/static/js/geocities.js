@@ -4,17 +4,20 @@
 (function() {
   'use strict';
 
+  // Define all functions first
+  // ----------------------------------------------------
+
   // Visitor Counter Animation
   function animateVisitorCounter() {
     const counter = document.getElementById('visitor-count');
     const totalHits = document.getElementById('total-hits');
     const onlineNow = document.getElementById('online-now');
-    
+
     if (counter) {
       // Generate random visitor count between 1000-9999
       const baseCount = Math.floor(Math.random() * 8999) + 1000;
       let currentCount = 0;
-      
+
       const interval = setInterval(() => {
         currentCount += Math.floor(Math.random() * 50) + 1;
         if (currentCount >= baseCount) {
@@ -24,15 +27,15 @@
         counter.textContent = String(currentCount).padStart(6, '0');
       }, 50);
     }
-    
+
     if (totalHits) {
       totalHits.textContent = Math.floor(Math.random() * 50000) + 10000;
     }
-    
+
     if (onlineNow) {
       // Random number of online users
       onlineNow.textContent = Math.floor(Math.random() * 100) + 1;
-      
+
       // Update online count every 30 seconds
       setInterval(() => {
         const variance = Math.floor(Math.random() * 10) - 5;
@@ -61,12 +64,12 @@
     if (quoteElement && !quoteElement.dataset.original) {
       // Store original quote
       quoteElement.dataset.original = quoteElement.textContent;
-      
+
       // 10% chance to show random 90s quote
       if (Math.random() < 0.1) {
         const randomQuote = ninetiesToQuotes[Math.floor(Math.random() * ninetiesToQuotes.length)];
         quoteElement.textContent = `"${randomQuote}"`;
-        
+
         const authorElement = document.querySelector('.quote-author');
         if (authorElement) {
           authorElement.textContent = "- The Digital Oracle";
@@ -78,24 +81,24 @@
   // Retro Sound Effects (using Web Audio API)
   function createRetroSounds() {
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    
+
     function playBeep(frequency = 800, duration = 200) {
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
-      
+
       oscillator.connect(gainNode);
       gainNode.connect(audioContext.destination);
-      
+
       oscillator.frequency.value = frequency;
       oscillator.type = 'square';
-      
+
       gainNode.gain.setValueAtTime(0.1, audioContext.currentTime);
       gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration / 1000);
-      
+
       oscillator.start(audioContext.currentTime);
       oscillator.stop(audioContext.currentTime + duration / 1000);
     }
-    
+
     // Add sound effects to links
     document.querySelectorAll('a').forEach(link => {
       link.addEventListener('mouseenter', () => {
@@ -104,7 +107,7 @@
         }
       });
     });
-    
+
     // Add sound to navigation
     document.querySelectorAll('.nav-link').forEach(link => {
       link.addEventListener('click', () => {
@@ -115,9 +118,6 @@
 
   // Retro Mouse Trail Effect
   function createMouseTrail() {
-    const trail = [];
-    const trailLength = 8;
-    
     function createTrailElement() {
       const element = document.createElement('div');
       element.style.position = 'fixed';
@@ -131,14 +131,14 @@
       document.body.appendChild(element);
       return element;
     }
-    
+
     document.addEventListener('mousemove', (e) => {
       // Only show trail 20% of the time to avoid overdoing it
       if (Math.random() < 0.2) {
         const trailElement = createTrailElement();
         trailElement.style.left = e.clientX + 'px';
         trailElement.style.top = e.clientY + 'px';
-        
+
         // Fade out and remove
         setTimeout(() => {
           trailElement.style.opacity = '0';
@@ -156,14 +156,14 @@
   function randomBackgroundShifts() {
     const container = document.querySelector('.container');
     if (!container) return;
-    
+
     setInterval(() => {
       if (Math.random() < 0.1) { // 10% chance every interval
         const colors = ['#ff00ff', '#00ffff', '#ffff00', '#ff0000', '#00ff00', '#0080ff'];
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
         container.style.borderColor = randomColor;
         container.style.boxShadow = `0 0 20px ${randomColor}80`;
-        
+
         // Reset after 2 seconds
         setTimeout(() => {
           container.style.borderColor = '#ff00ff';
@@ -183,7 +183,7 @@
       "Establishing data link...",
       "Activating retro mode..."
     ];
-    
+
     // Show loading message briefly on page load
     const loadingDiv = document.createElement('div');
     loadingDiv.style.cssText = `
@@ -200,15 +200,15 @@
       text-align: center;
       box-shadow: 0 0 20px rgba(0, 0, 255, 0.8);
     `;
-    
+
     const message = messages[Math.floor(Math.random() * messages.length)];
     loadingDiv.innerHTML = `
       <div style="font-size: 1.2rem; margin-bottom: 10px;">${message}</div>
       <div style="color: #00ff00;">█████████░ 90%</div>
     `;
-    
+
     document.body.appendChild(loadingDiv);
-    
+
     setTimeout(() => {
       loadingDiv.style.opacity = '0';
       loadingDiv.style.transition = 'opacity 0.5s';
@@ -220,73 +220,6 @@
     }, 1500);
   }
 
-    document.addEventListener('DOMContentLoaded', function() {
-    // Find all buttons with the class 'share-copy'
-    const copyButtons = document.querySelectorAll('.share-copy');
-
-    copyButtons.forEach(button => {
-        button.addEventListener('click', function(event) {
-        // Get the URL from the data-url attribute of the clicked button
-        const urlToCopy = this.dataset.url;
-
-        // Use the modern Clipboard API to copy the text
-        if (navigator.clipboard) {
-            navigator.clipboard.writeText(urlToCopy).then(() => {
-            // Optional: Provide user feedback
-            const originalText = button.innerHTML;
-            button.innerHTML = '✅ Copied!';
-            setTimeout(() => {
-                button.innerHTML = originalText;
-            }, 2000);
-            }).catch(err => {
-            console.error('Failed to copy text: ', err);
-            });
-        } else {
-            // Fallback for older browsers
-            console.warn('Clipboard API not supported.');
-            fallbackCopyToClipboard(urlToCopy);
-        }
-        });
-    });
-    });
-
-  // Toggle Music Function (for future MIDI support)
-  window.toggleMusic = function() {
-    const player = document.querySelector('.midi-player');
-    const isPlaying = player.dataset.playing === 'true';
-    
-    if (isPlaying) {
-      player.dataset.playing = 'false';
-      document.querySelector('#song-title').textContent = 'MIDI_SONG.MID (Paused)';
-    } else {
-      player.dataset.playing = 'true';
-      document.querySelector('#song-title').textContent = 'MIDI_SONG.MID (Playing)';
-    }
-    
-    // Show retro notification
-    const notification = document.createElement('div');
-    notification.style.cssText = `
-      position: fixed;
-      bottom: 20px;
-      left: 20px;
-      background: #000080;
-      color: #ffff00;
-      padding: 10px 15px;
-      border: 2px solid #ffff00;
-      font-family: 'Courier Prime', monospace;
-      z-index: 10000;
-      animation: blink 0.5s linear 3;
-    `;
-    notification.textContent = isPlaying ? '🔇 Music Paused' : '🎵 Music Playing';
-    document.body.appendChild(notification);
-    
-    setTimeout(() => {
-      if (notification.parentNode) {
-        notification.parentNode.removeChild(notification);
-      }
-    }, 2000);
-  };
-
   // Easter Eggs
   function initializeEasterEggs() {
     let konamiCode = [];
@@ -295,19 +228,19 @@
       'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
       'KeyB', 'KeyA'
     ];
-    
+
     document.addEventListener('keydown', (e) => {
       konamiCode.push(e.code);
       if (konamiCode.length > konamiSequence.length) {
         konamiCode.shift();
       }
-      
+
       if (konamiCode.join(',') === konamiSequence.join(',')) {
         activateKonamiMode();
         konamiCode = [];
       }
     });
-    
+
     // Secret click sequence on title
     let titleClicks = 0;
     const siteTitle = document.querySelector('.site-title');
@@ -318,7 +251,7 @@
           activateHyperMode();
           titleClicks = 0;
         }
-        
+
         // Reset counter after 3 seconds
         setTimeout(() => {
           if (titleClicks > 0) titleClicks--;
@@ -330,7 +263,7 @@
   function activateKonamiMode() {
     document.body.style.animation = 'rainbow-spin 2s linear infinite';
     document.body.style.transformOrigin = 'center';
-    
+
     // Add rainbow spin keyframe
     if (!document.getElementById('konami-style')) {
       const style = document.createElement('style');
@@ -343,7 +276,7 @@
       `;
       document.head.appendChild(style);
     }
-    
+
     // Show congratulations message
     const congrats = document.createElement('div');
     congrats.style.cssText = `
@@ -364,7 +297,7 @@
     `;
     congrats.innerHTML = '🎉 KONAMI CODE ACTIVATED! 🎉<br>Welcome to the 90s Matrix!';
     document.body.appendChild(congrats);
-    
+
     setTimeout(() => {
       document.body.style.animation = '';
       if (congrats.parentNode) {
@@ -386,9 +319,9 @@
       z-index: 9998;
       overflow: hidden;
     `;
-    
+
     const characters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン';
-    
+
     for (let i = 0; i < 20; i++) {
       const column = document.createElement('div');
       column.style.cssText = `
@@ -401,7 +334,7 @@
         animation: matrix-fall ${3 + Math.random() * 2}s linear infinite;
         animation-delay: ${Math.random() * 2}s;
       `;
-      
+
       let columnText = '';
       for (let j = 0; j < 20; j++) {
         columnText += characters[Math.floor(Math.random() * characters.length)] + '<br>';
@@ -409,7 +342,7 @@
       column.innerHTML = columnText;
       matrixContainer.appendChild(column);
     }
-    
+
     // Add keyframe for matrix effect
     if (!document.getElementById('matrix-style')) {
       const style = document.createElement('style');
@@ -422,9 +355,9 @@
       `;
       document.head.appendChild(style);
     }
-    
+
     document.body.appendChild(matrixContainer);
-    
+
     // Show hyper mode message
     const hyperMsg = document.createElement('div');
     hyperMsg.style.cssText = `
@@ -443,7 +376,7 @@
     `;
     hyperMsg.innerHTML = '🚀 HYPER MODE ACTIVATED! 🚀<br>Welcome to Cyberspace!';
     document.body.appendChild(hyperMsg);
-    
+
     setTimeout(() => {
       if (matrixContainer.parentNode) {
         matrixContainer.parentNode.removeChild(matrixContainer);
@@ -468,7 +401,7 @@
       "📼 Rewinding VHS...",
       "💻 Updating Windows 98..."
     ];
-    
+
     function showMessage() {
       if (Math.random() < 0.3) { // 30% chance
         const message = messages[Math.floor(Math.random() * messages.length)];
@@ -487,7 +420,7 @@
         `;
         statusDiv.textContent = message;
         document.body.appendChild(statusDiv);
-        
+
         setTimeout(() => {
           statusDiv.style.opacity = '0';
           statusDiv.style.transition = 'opacity 0.5s';
@@ -499,7 +432,7 @@
         }, 3000);
       }
     }
-    
+
     // Show random messages every 30-60 seconds
     setInterval(showMessage, 30000 + Math.random() * 30000);
   }
@@ -507,7 +440,7 @@
   // Add floating "NEW!" badges randomly
   function addFloatingBadges() {
     const badges = ['NEW!', 'HOT!', 'COOL!', 'WOW!', 'RAD!'];
-    
+
     function createFloatingBadge() {
       if (Math.random() < 0.1) { // 10% chance
         const badge = document.createElement('div');
@@ -524,9 +457,9 @@
           z-index: 9999;
           animation: float-across 8s linear;
         `;
-        
+
         badge.textContent = badges[Math.floor(Math.random() * badges.length)];
-        
+
         if (!document.getElementById('float-style')) {
           const style = document.createElement('style');
           style.id = 'float-style';
@@ -540,9 +473,9 @@
           `;
           document.head.appendChild(style);
         }
-        
+
         document.body.appendChild(badge);
-        
+
         setTimeout(() => {
           if (badge.parentNode) {
             badge.parentNode.removeChild(badge);
@@ -550,17 +483,105 @@
         }, 8000);
       }
     }
-    
+
     // Create floating badges every 45-90 seconds
     setInterval(createFloatingBadge, 45000 + Math.random() * 45000);
   }
 
-  // Initialize all features when page loads
+  // Helper function to format time
+  function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const remainingSeconds = Math.floor(seconds % 60);
+    const formattedSeconds = remainingSeconds < 10 ? '0' + remainingSeconds : remainingSeconds;
+    return `${minutes}:${formattedSeconds}`;
+  }
+  
+  // MP3 Player Logic
+  function initializeMp3Player() {
+    const audio = document.getElementById('audio-source');
+    const playPauseBtn = document.getElementById('play-pause-btn');
+    const stopBtn = document.getElementById('stop-btn');
+    const muteBtn = document.getElementById('mute-btn');
+    const trackTitle = document.querySelector('.track-title');
+    const currentTimeDisplay = document.getElementById('current-time');
+    const totalTimeDisplay = document.getElementById('total-time');
+
+    // Check if the required elements exist
+    if (!audio || !playPauseBtn || !muteBtn) return;
+
+    // Set initial track title
+    trackTitle.textContent = "no more bad days (instrumental loop).mp3";
+
+    // Event listener for the play/pause button
+    playPauseBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        playPauseBtn.textContent = '⏸';
+      } else {
+        audio.pause();
+        playPauseBtn.textContent = '▶';
+      }
+    });
+
+    // Event listener for the stop button
+    stopBtn.addEventListener('click', () => {
+      audio.pause();
+      audio.currentTime = 0;
+      playPauseBtn.textContent = '▶';
+    });
+
+    // Event listener for the mute button
+    muteBtn.addEventListener('click', () => {
+      if (audio.muted) {
+        audio.muted = false;
+        muteBtn.textContent = '🔊';
+      } else {
+        audio.muted = true;
+        muteBtn.textContent = '🔇';
+      }
+    });
+
+    // Event listener for time display
+    audio.addEventListener('loadedmetadata', () => {
+      totalTimeDisplay.textContent = formatTime(audio.duration);
+    });
+
+    // Event listener to update current time display
+    audio.addEventListener('timeupdate', () => {
+      currentTimeDisplay.textContent = formatTime(audio.currentTime);
+    });
+  }
+
+  // Share/Copy Button Logic
+  function initializeShareButtons() {
+    const copyButtons = document.querySelectorAll('.share-copy');
+    copyButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const urlToCopy = this.dataset.url;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(urlToCopy).then(() => {
+            const originalText = button.innerHTML;
+            button.innerHTML = '✅ Copied!';
+            setTimeout(() => {
+              button.innerHTML = originalText;
+            }, 2000);
+          }).catch(err => {
+            console.error('Failed to copy text: ', err);
+          });
+        }
+      });
+    });
+  }
+
+  // Add all event listeners and initial calls inside ONE DOMContentLoaded block
+  // -------------------------------------------------------------------------
   document.addEventListener('DOMContentLoaded', () => {
     // Core features
     animateVisitorCounter();
     randomizeQuote();
-    
+    initializeMp3Player();
+    initializeShareButtons();
+
     // Only enable sound effects if user interacts first (browser requirement)
     let soundsEnabled = false;
     document.addEventListener('click', () => {
@@ -569,50 +590,41 @@
         soundsEnabled = true;
       }
     }, { once: true });
-    
+
     // Visual effects
     createMouseTrail();
     randomBackgroundShifts();
     initializeEasterEggs();
-    
+
     // Periodic effects
-    setTimeout(showRandomStatusMessages, 10000); // Start after 10 seconds
-    setTimeout(addFloatingBadges, 30000); // Start after 30 seconds
-    
+    setTimeout(showRandomStatusMessages, 10000);
+    setTimeout(addFloatingBadges, 30000);
+
     // Show loading message
     if (document.readyState === 'loading') {
       showLoadingMessages();
     }
-    
+
     // Add retro scrollbar styling
     const style = document.createElement('style');
     style.textContent = `
-      ::-webkit-scrollbar {
-        width: 16px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #c0c0c0;
-        border: 2px inset #c0c0c0;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: #808080;
-        border: 2px outset #808080;
-      }
-      ::-webkit-scrollbar-thumb:hover {
-        background: #606060;
-      }
+      ::-webkit-scrollbar { width: 16px; }
+      ::-webkit-scrollbar-track { background: #c0c0c0; border: 2px inset #c0c0c0; }
+      ::-webkit-scrollbar-thumb { background: #808080; border: 2px outset #808080; }
+      ::-webkit-scrollbar-thumb:hover { background: #606060; }
     `;
     document.head.appendChild(style);
   });
 
   // Add some fun console messages for developers
-  console.log("%c🌟 Welcome to GeoCities Reaper! 🌟", 
-              "background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0080ff, #8000ff); color: white; padding: 10px; font-size: 16px; font-weight: bold;");
-  console.log("%cThis site is powered by pure 90s nostalgia!", 
-              "color: #ff00ff; font-size: 14px; font-weight: bold;");
-  console.log("%cTry the Konami Code: ↑↑↓↓←→←→BA", 
-              "color: #00ff00; font-family: 'Courier New', monospace;");
-  console.log("%cOr click the site title 5 times for a surprise!", 
-              "color: #0080ff; font-style: italic;");
+  // ----------------------------------------------------
+  console.log("%c🌟 Welcome to GeoCities Reaper! 🌟",
+    "background: linear-gradient(45deg, #ff0000, #ff8000, #ffff00, #00ff00, #0080ff, #8000ff); color: white; padding: 10px; font-size: 16px; font-weight: bold;");
+  console.log("%cThis site is powered by pure 90s nostalgia!",
+    "color: #ff00ff; font-size: 14px; font-weight: bold;");
+  console.log("%cTry the Konami Code: ↑↑↓↓←→←→BA",
+    "color: #00ff00; font-family: 'Courier New', monospace;");
+  console.log("%cOr click the site title 5 times for a surprise!",
+    "color: #0080ff; font-style: italic;");
 
-})();
+})(); // End of the IIFE
