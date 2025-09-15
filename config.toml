@@ -1,7 +1,7 @@
 baseURL = 'http://ventdrop.github.io/'
 languageCode = 'en-us'
-title = 'an infosec blog'
-theme = "m10c"
+title = 'Vent Drop | an infosec blog'
+theme = "geocities-reaper"
 
 [menu]
   [[menu.main]]
@@ -10,21 +10,51 @@ theme = "m10c"
     url = "/"
     weight = 1
   [[menu.main]]
+    identifier = "posts"
+    name = "Posts"
+    url = "/posts/"
+    weight = 2
+  [[menu.main]]
     identifier = "tags"
     name = "Tags"
     url = "/tags/"
-    weight = 2
+    weight = 3
   [[menu.main]]
     identifier = "writeups"
     name = "WriteUps"
     url = "/tags/writeups/"
-    weight = 3
+    weight = 4
 
 [params]
-  author = "Rick Gatenby"
+  author = "RG"
   avatar = "/avatar.jpg"
-  description = "cybersecurity professional, orioles fan, novelty claw machine enjoyer"
   menu_item_separator = " - "
+  subtitle = "bfake"
+  description = "^^"
+  location = "Cyberspace"
+  mood = "pensive"
+  welcome_message = """                                                                              
+                                                                              
+                                               ___                            
+                                               `MM                            
+                              /                 MM                            
+____    ___  ____  ___  __   /M             ____MM ___  __   _____  __ ____   
+`MM(    )M' 6MMMMb `MM 6MMb /MMMMM         6MMMMMM `MM 6MM  6MMMMMb `M6MMMMb  
+ `Mb    d' 6M'  `Mb MMM9 `Mb MM           6M'  `MM  MM69 " 6M'   `Mb MM'  `Mb 
+  YM.  ,P  MM    MM MM'   MM MM           MM    MM  MM'    MM     MM MM    MM 
+   MM  M   MMMMMMMM MM    MM MM           MM    MM  MM     MM     MM MM    MM 
+   `Mbd'   MM       MM    MM MM           MM    MM  MM     MM     MM MM    MM 
+    YMP    YM    d9 MM    MM YM.  ,       YM.  ,MM  MM     YM.   ,M9 MM.  ,M9 
+     M      YMMMM9 _MM_  _MM_ YMMM9        YMMMMMM__MM_     YMMMMM9  MMYMMM9  
+                                                                     MM       
+                                                                     MM       
+                                                                    _MM_      
+  """
+  quote = "... That no single, individual moment is in and of itself unendurable."
+  quote_author = "David Foster Wallace, Infinite Jest"
+  about = "cybersecurity professional, orioles/ravens fan, musician, novelty claw machine enjoyer"
+  guestbook = false
+  links = true
   
   [[params.social]]
     icon = "github"
@@ -34,11 +64,3 @@ theme = "m10c"
     icon = "twitter"
     name = "Twitter"
     url = "https://twitter.com/ventdrop"
-
-
-  [params.style]
-  darkestColor = "#242930"
-  darkColor = "#353b43"
-  lightColor = "#afbac4"
-  lightestColor = "#ffffff"
-  primaryColor = "#57cc8a"

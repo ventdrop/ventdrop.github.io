@@ -1,40 +1,54 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>an infosec blog</title>
-    <link>http://ventdrop.github.io/</link>
-    <description>Recent content on an infosec blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <title>Vent Drop | an infosec blog</title>
+    <link>http://localhost:1313/</link>
+    <description>Recent content on Vent Drop | an infosec blog</description>
+    <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 25 Feb 2024 23:10:37 +1100</lastBuildDate><atom:link href="http://ventdrop.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 08 Feb 2025 18:59:25 +1100</lastBuildDate>
+    <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Fake CAPTCHA leads to Vidar Stealer</title>
+      <link>http://localhost:1313/posts/vidar/</link>
+      <pubDate>Sat, 08 Feb 2025 18:59:25 +1100</pubDate>
+      <guid>http://localhost:1313/posts/vidar/</guid>
+      <description>&lt;p&gt;There&amp;rsquo;s been an apparent resurgence of fake CAPTCHA style malware delivery in the recent months. This is a fairly clever way of having a user unknowingly executable malicious code. In this post, we&amp;rsquo;ll attempt to follow along with execution, all the way from fake CAPTCHA to execution of final payload. This post will attempt to focus on how to analyse and follow execution in the event that sandboxes, articles or any outside help are unavailable, although these will be referenced at times.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>ASyncRAT [IR/Malware Analysis]</title>
+      <link>http://localhost:1313/posts/asyncrat/</link>
+      <pubDate>Sun, 19 Jan 2025 14:55:40 +1100</pubDate>
+      <guid>http://localhost:1313/posts/asyncrat/</guid>
+      <description>&lt;h2 id=&#34;sandbox-surfing&#34;&gt;Sandbox Surfing&lt;/h2&gt;&#xA;&lt;p&gt;It&amp;rsquo;s been a while since I&amp;rsquo;ve done one of these, but I had some time and thought I&amp;rsquo;d do quick analysis of whatever random file I found on public submissions of any.run. The file I landed on is named &lt;code&gt;xx.jpg&lt;/code&gt; (really a .zip file). This didn&amp;rsquo;t appear to be the original file in this infection chain, so I needed to pivot in VT and find the execution parent. You can do this by clicking the &lt;code&gt;relations&lt;/code&gt; tab and investigating the listed files.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Bitter [IR/Malware Analysis]</title>
+      <link>http://localhost:1313/posts/bitter/</link>
+      <pubDate>Mon, 15 Jul 2024 18:24:57 +1000</pubDate>
+      <guid>http://localhost:1313/posts/bitter/</guid>
+      <description>&lt;h2 id=&#34;bitter-apt&#34;&gt;Bitter (APT)&lt;/h2&gt;&#xA;&lt;p&gt;Saw a tweet with a &lt;code&gt;.chm&lt;/code&gt; file showing 0 detections on VT and decided to check it out. TL;DR - I learned that the malware does nothing additional that the tweet didn&amp;rsquo;t already show, but here&amp;rsquo;s how I manually looked at it anyway.&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;File Name: &amp;ldquo;CamScanner 10-07-2024 10.40.chm&amp;rdquo;&lt;/li&gt;&#xA;&lt;li&gt;MD5: 16807cb880073b1c21009f7749c8fe7f&lt;/li&gt;&#xA;&lt;li&gt;SHA-1: 2f4c75347aada1894e6b90d1162374ef3ce7bedf&lt;/li&gt;&#xA;&lt;li&gt;SHA-256: 1dd50966db005e30f7a69b6d16dfe8b9810dba3cdbe43bebb136f8786d027ed1&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;Note: &lt;a href=&#34;https://www.virustotal.com/gui/file/1dd50966db005e30f7a69b6d16dfe8b9810dba3cdbe43bebb136f8786d027ed1/detection&#34;&gt;VT Detection Rate is now: 2/64&lt;/a&gt;. The file is also detected by &lt;a href=&#34;https://app.docguard.io/1dd50966db005e30f7a69b6d16dfe8b9810dba3cdbe43bebb136f8786d027ed1/d331da0f-3143-4611-841c-b6f5443f72c8/0/results/dashboard&#34;&gt;DocGuard&lt;/a&gt;&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/bitter/Untitled.png&#34; alt=&#34;VirusTotal as of 14 Jul, 2024&#34;&gt;&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Strela Stealer [IR/Malware Analysis]</title>
-      <link>http://ventdrop.github.io/posts/strelastealer/</link>
+      <link>http://localhost:1313/posts/strelastealer/</link>
       <pubDate>Sun, 25 Feb 2024 23:10:37 +1100</pubDate>
-      
-      <guid>http://ventdrop.github.io/posts/strelastealer/</guid>
-      <description>Strela Stealer I decided to grab a random malware sample from any.run and have a bit of a poke around. The file I chose from public submissions has the following details:
-MD5: 09a3293c8e85921340f2e75cf398b0a5 FileName: 2585747226036.zip Extracted FileName: 2585747226036.js This file showed as no threats detected in the sandbox. Despite it showing no malicious activity (note the .dll error message box below which may be a deception technique or a legitimate error), a quick look at the AnyRun process tree shows some interesting things; we’ll keep this in mind for our analysis.</description>
+      <guid>http://localhost:1313/posts/strelastealer/</guid>
+      <description>&lt;h2 id=&#34;strela-stealer&#34;&gt;Strela Stealer&lt;/h2&gt;&#xA;&lt;p&gt;I decided to grab a random malware sample from &lt;a href=&#34;http://any.run&#34;&gt;any.run&lt;/a&gt; and have a bit of a poke around. The file I chose from public submissions has the following details:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;MD5: 09a3293c8e85921340f2e75cf398b0a5&lt;/li&gt;&#xA;&lt;li&gt;FileName: 2585747226036.zip&lt;/li&gt;&#xA;&lt;li&gt;Extracted FileName: 2585747226036.js&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;This file showed as &lt;a href=&#34;https://app.any.run/tasks/fd24f96b-532b-422e-90b8-bdc4b4adfe14/#&#34;&gt;no threats detected in the sandbox&lt;/a&gt;. Despite it showing no malicious activity (note the .dll error message box below which may be a deception technique or a legitimate error), a quick look at the AnyRun process tree shows some interesting things; we’ll keep this in mind for our analysis. The .zip file not present in VirusTotal, however the extracted file is (as we will see shortly).&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>HTB - SpookyLicense [reversing]</title>
-      <link>http://ventdrop.github.io/posts/spookylicense/</link>
+      <link>http://localhost:1313/posts/spookylicense/</link>
       <pubDate>Tue, 25 Apr 2023 22:31:26 +1100</pubDate>
-      
-      <guid>http://ventdrop.github.io/posts/spookylicense/</guid>
-      <description>Introduction SpookyLicense is an “easy” reverse engineering challenge offered by HackTheBox, with “easy” in quotes as this one took me a considerable amount of effort. I am fairly new to reversing challenges and reverse engineering in general, but that’s what these are all about—learning new things. This was just my experience and there may be—as they say—more than one way to crack an egg. With all that being said, this is how I managed to solve the challenge.</description>
+      <guid>http://localhost:1313/posts/spookylicense/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;SpookyLicense is an “easy” reverse engineering challenge offered by HackTheBox, with “easy” in quotes as this one took me a considerable amount of effort. I am fairly new to reversing challenges and reverse engineering in general, but that’s what these are all about—learning new things. This was just my experience and there may be—as they say—more than one way to crack an egg. With all that being said, this is how I managed to solve the challenge.&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>HTB - Pandora&#39;s Bane [forensics]</title>
-      <link>http://ventdrop.github.io/posts/pandorasbane/</link>
+      <link>http://localhost:1313/posts/pandorasbane/</link>
       <pubDate>Fri, 07 Apr 2023 18:23:44 +1000</pubDate>
-      
-      <guid>http://ventdrop.github.io/posts/pandorasbane/</guid>
-      <description>Introduction This was the final Forensics category challenge in HackTheBox&amp;rsquo;s recent CTF, Cyber Apocalypse — The Cursed Mission.
-My notes won&amp;rsquo;t be super detailed here as I didn&amp;rsquo;t do a whole lot of documentation during the CTF, so this is more just snippets of methodologies applied. This one felt like a speedrun compared to how much time I spent getting stuck on the final decryption of Interstellar C2 (which I could not do, btw).</description>
+      <guid>http://localhost:1313/posts/pandorasbane/</guid>
+      <description>&lt;h2 id=&#34;introduction&#34;&gt;Introduction&lt;/h2&gt;&#xA;&lt;p&gt;This was the final Forensics category challenge in HackTheBox&amp;rsquo;s recent CTF, &lt;a href=&#34;https://www.hackthebox.com/blog/cyber-apocalypse-2023-news&#34;&gt;Cyber Apocalypse — The Cursed Mission&lt;/a&gt;.&lt;br&gt;&#xA;My notes won&amp;rsquo;t be super detailed here as I didn&amp;rsquo;t do a whole lot of documentation during the CTF, so this is more just snippets of methodologies applied.&#xA;This one felt like a speedrun compared to how much time I spent getting stuck on the final decryption of Interstellar C2 (which I could not do, btw).&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

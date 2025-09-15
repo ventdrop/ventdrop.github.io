@@ -1,0 +1,405 @@
+{{ define "main" }}
+<div class="tags-page">
+  <header class="page-header">
+    <h1 class="page-title rainbow-text">🏷️ All Tags</h1>
+
+    <div class="tags-description">
+      <p>Browse posts by tag to find exactly what you're looking for!</p>
+    </div>
+
+    {{ if .Data.Terms }}
+    <div class="tags-count">
+     📊 Total Tags: <strong>{{ len .Data.Terms }}</strong>
+    </div>
+    {{ end }}
+  </header>
+
+  <div class="tags-container">
+    {{ if .Data.Terms }}
+        <div class="tags-cloud">
+      {{ range $name, $taxonomy := .Data.Terms }}
+      {{ $count := .Count }}
+      {{ $weight := div (mul $count 3) (len $.Data.Terms) }}
+      {{ $weight := div (mul $count 3) (len $.Data.Terms) }}
+      <a href="{{ $.Site.LanguagePrefix }}/tags/{{ $name | urlize }}" class="tag-cloud-link">
+          <span class="tag-name">{{ $name }}</span>
+          <span class="tag-count">({{ $count }})</span>
+        </a>
+      </div>
+      {{ end }}
+    </div>
+
+    <!-- Alphabetical List -->
+    <div class="tags-list-section">
+      <h3 class="section-title">📋 Alphabetical List</h3>
+      <div class="tags-alphabetical">
+        {{ range $name, $taxonomy := .Data.Terms.Alphabetical }}
+        <div class="tag-list-item">
+          <div class="tag-header">
+            <a href="{{ $.Site.LanguagePrefix }}/tags/{{ $name | urlize }}" class="tag-list-link">
+              🏷️ {{ $name | title }} 
+              <span class="tag-post-count">({{ .Count }} {{ if eq .Count 1 }}post{{ else }}posts{{ end }})</span>
+            </a>
+          </div>
+          
+          <div class="tag-posts-preview">
+            {{ range first 3 .Pages }}
+            <div class="tag-post-item">
+              <span class="tag-post-date">[{{ .Date.Format "2006-01-02" }}]</span>
+              <a href="{{ .Permalink }}" class="tag-post-link">{{ .Title }}</a>
+            </div>
+            {{ end }}
+            
+            {{ if gt .Count 3 }}
+            <div class="tag-view-all">
+              <a href="{{ $.Site.LanguagePrefix }}/tags/{{ $name | urlize }}" class="tag-view-all-link">
+                📚 View all {{ .Count }} posts →
+              </a>
+            </div>
+            {{ end }}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Popular Tags -->
+    <div class="popular-tags-section">
+      <h3 class="section-title">🔥 Most Popular Tags</h3>
+      <div class="popular-tags">
+        {{ range first 10 .Data.Terms.ByCount }}
+        <div class="popular-tag-item">
+          <a href="{{ $.Site.LanguagePrefix }}/tags/{{ .Name | urlize }}" class="popular-tag-link">
+            <span class="popular-tag-name">{{ .Name | title }}</span>
+            <span class="popular-tag-count">{{ .Count }}</span>
+          </a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    
+    {{ else }}
+    <!-- Individual Tag Page - Show posts for this tag -->
+    <div class="tag-posts-section">
+      <div class="posts-container">
+        {{ if .Pages }}
+        {{ range .Pages }}
+        <article class="post-summary">
+          <header class="post-summary-header">
+            <h2 class="post-summary-title">
+              <a href="{{ .Permalink }}" class="post-link">{{ .Title }}</a>
+              {{ if .Params.new }}
+              <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" class="new-indicator" onerror="this.style.display='none'">
+              {{ end }}
+            </h2>
+            
+            <div class="post-summary-meta">
+              <span class="post-date">📅 {{ .Date.Format "Jan 2, 2006" }}</span>
+              
+              {{ if .Params.author }}
+              <span class="post-author">👤 {{ .Params.author }}</span>
+              {{ end }}
+              
+              {{ if .ReadingTime }}
+              <span class="reading-time">⏱️ {{ .ReadingTime }} min read</span>
+              {{ end }}
+            </div>
+            
+            {{ if .Params.tags }}
+            <div class="post-tags">
+              🏷️
+              {{ range $index, $tag := .Params.tags }}
+              {{ if gt $index 0 }}, {{ end }}
+              <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">{{ $tag }}</a>
+              {{ end }}
+            </div>
+            {{ end }}
+          </header>
+
+          <div class="post-summary-content">
+            {{ if .Summary }}
+            <p>{{ .Summary | truncate 200 }}</p>
+            {{ else }}
+            <p>{{ .Content | plainify | truncate 200 }}</p>
+            {{ end }}
+            
+            <div class="read-more">
+              <a href="{{ .Permalink }}" class="read-more-link">📖 Read More →</a>
+            </div>
+          </div>
+        </article>
+        {{ end }}
+        {{ else }}
+        <div class="no-posts">
+          <h3>🚫 No Posts Found</h3>
+          <p>No posts found with this tag. Maybe they're still under construction?</p>
+          
+          <div class="under-construction">
+            <img src="{{ "images/under-construction.gif" | relURL }}" alt="Under Construction" onerror="this.style.display='none'">
+            <p>Content under construction!</p>
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+
+    {{ if not .Data.Terms }}
+    {{ if not .Pages }}
+    <div class="no-tags">
+      <h3>🚫 No Tags Found</h3>
+      <p>Looks like there aren't any tagged posts yet! Start tagging your posts to organize your content!</p>
+      
+      <div class="under-construction">
+        <img src="{{ "images/under-construction.gif" | relURL }}" alt="Under Construction" onerror="this.style.display='none'">
+        <p>Tag system under construction!</p>
+      </div>
+    </div>
+    {{ end }}
+    {{ end }}
+  </div>
+  
+  <!-- Back to Posts -->
+  <div class="back-to-posts">
+    <a href="{{ "/posts/" | relURL }}" class="back-link">📚 Back to All Posts</a>
+  </div>
+</div>
+
+<style>
+/* Tags Page Specific Styles */
+.tags-page {
+  padding: 20px;
+}
+
+.tags-container {
+  display: grid;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.tags-cloud {
+  background: #e0e0e0;
+  border: 3px outset #c0c0c0;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.tag-item {
+  display: inline-block;
+  margin: 8px;
+  animation: float 6s ease-in-out infinite;
+}
+
+.tag-item:nth-child(even) {
+  animation-delay: 0.5s;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-5px); }
+}
+
+.tag-cloud-link {
+  text-decoration: none;
+  padding: 8px 12px;
+  border: 2px outset #c0c0c0;
+  background: linear-gradient(45deg, #ff69b4, #87ceeb);
+  color: #000080;
+  font-weight: bold;
+  display: inline-block;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  text-shadow: 1px 1px 0px #fff;
+}
+
+.tag-cloud-link:hover {
+  border: 2px inset #c0c0c0;
+  background: linear-gradient(45deg, #ff1493, #4682b4);
+  color: #fff;
+  text-shadow: 1px 1px 0px #000;
+  transform: scale(1.1);
+}
+
+.tag-count {
+  color: #666;
+  font-size: 0.8em;
+}
+
+.tags-list-section {
+  background: #f5f5dc;
+  border: 3px ridge #daa520;
+  padding: 20px;
+}
+
+.tags-alphabetical {
+  display: grid;
+  gap: 20px;
+}
+
+.tag-list-item {
+  background: #fff;
+  border: 2px outset #c0c0c0;
+  padding: 15px;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.tag-header {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid #000080;
+}
+
+.tag-list-link {
+  color: #000080;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.tag-list-link:hover {
+  color: #ff00ff;
+  text-shadow: 1px 1px 0px #000;
+}
+
+.tag-post-count {
+  color: #666;
+  font-size: 0.9rem;
+  font-weight: normal;
+}
+
+.tag-posts-preview {
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-family: 'Courier Prime', monospace;
+  font-size: 0.9rem;
+}
+
+.tag-post-item {
+  margin: 4px 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.tag-post-date {
+  color: #666;
+  font-size: 0.8rem;
+  min-width: 80px;
+}
+
+.tag-post-link {
+  color: #0000ff;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.tag-post-link:hover {
+  color: #ff00ff;
+}
+
+.tag-post-link:visited {
+  color: #800080;
+}
+
+.tag-view-all-link {
+  color: #008000;
+  font-weight: bold;
+  text-decoration: none;
+  font-style: italic;
+}
+
+.tag-view-all-link:hover {
+  color: #004000;
+}
+
+.popular-tags-section {
+  background: linear-gradient(135deg, #ff69b4, #ffb6c1);
+  border: 3px ridge #ff1493;
+  padding: 20px;
+}
+
+.popular-tags {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.popular-tag-item {
+  background: #fff;
+  border: 2px outset #c0c0c0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.popular-tag-item:hover {
+  border: 2px inset #c0c0c0;
+  transform: translateY(-2px);
+}
+
+.popular-tag-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  text-decoration: none;
+  color: #000080;
+  font-weight: bold;
+}
+
+.popular-tag-count {
+  background: #ff0000;
+  color: #fff;
+  padding: 4px 8px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+.no-tags {
+  text-align: center;
+  padding: 50px 20px;
+  background: linear-gradient(45deg, #ffb6c1, #ffd700);
+  border: 3px ridge #ff69b4;
+  margin: 20px 0;
+}
+
+.under-construction img {
+  width: 100px;
+  height: auto;
+  margin: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .tags-cloud {
+    padding: 20px 10px;
+  }
+  
+  .tag-item {
+    margin: 4px;
+  }
+  
+  .tag-cloud-link {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+  
+  .popular-tags {
+    grid-template-columns: 1fr;
+  }
+  
+  .tag-post-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .tag-post-date {
+    min-width: auto;
+  }
+}
+</style>
+{{ end }}

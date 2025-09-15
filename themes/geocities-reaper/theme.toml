@@ -1,0 +1,11 @@
+name = "GeoCities Reaper"
+license = "MIT"
+description = "A nostalgic 90s GeoCities-style Hugo theme"
+homepage = "https://github.com/ventdrop"
+tags = ["retro", "90s", "geocities", "nostalgic", "colorful"]
+features = ["responsive", "retro-styling"]
+min_version = "0.41.0"
+
+[author]
+  name = "RG"
+  homepage = "https://ventdrop.github.io"

@@ -1,0 +1,81 @@
+{{ define "main" }}
+<article class="single-post">
+  <header class="post-header">
+    <h1 class="post-title rainbow-text">{{ .Title }}</h1>
+    
+    <div class="post-meta">
+      <span class="post-date">📅 {{ .Date.Format "Monday, January 2, 2006" }}</span>
+      
+      {{ if .Params.author }}
+      <span class="post-author">👤 By: {{ .Params.author }}</span>
+      {{ end }}
+      
+      {{ if .Params.tags }}
+      <div class="post-tags">
+        🏷️ Tags: 
+        {{ range $index, $tag := .Params.tags }}
+        {{ if gt $index 0 }}, {{ end }}
+        <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">{{ $tag }}</a>
+        {{ end }}
+      </div>
+      {{ end }}
+      
+      {{ if .Params.new }}
+      <div class="new-post">
+        <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" onerror="this.style.display='none'">
+        <span class="blink">NEW POST!</span>
+      </div>
+      {{ end }}
+    </div>
+  </header>
+
+  <div class="post-content">
+    {{ .Content }}
+  </div>
+
+  <footer class="post-footer">
+    <div class="post-navigation">
+      {{ if .PrevInSection }}
+      <div class="nav-prev">
+        <a href="{{ .PrevInSection.Permalink }}" class="nav-link">← {{ .PrevInSection.Title }}</a>
+      </div>
+      {{ end }}
+      
+      {{ if .NextInSection }}
+      <div class="nav-next">
+        <a href="{{ .NextInSection.Permalink }}" class="nav-link">{{ .NextInSection.Title }} →</a>
+      </div>
+      {{ end }}
+    </div>
+    
+    <div class="back-to-posts">
+      <a href="{{ "/posts/" | relURL }}" class="back-link">Back to All Posts</a>
+    </div>
+    
+    <!-- Classic 90s sharing -->
+    <div class="share-section">
+      <h4>Share This Post!</h4>
+      <div class="share-buttons">
+        <a href="mailto:?subject={{ .Title }}&body=Check out this cool post: {{ .Permalink }}" class="share-email">📧 Email</a>
+        <button data-url="{{ .Permalink }}" class="share-copy">Copy Link</button>
+      </div>
+    </div>
+  </footer>
+</article>
+
+<!-- Related Posts -->
+{{ $related := .Site.RegularPages.Related . | first 3 }}
+{{ if $related }}
+<section class="related-posts">
+  <h3 class="section-title">🔗 Related Posts</h3>
+  <div class="related-list">
+    {{ range $related }}
+    <div class="related-item">
+      <a href="{{ .Permalink }}" class="related-link">{{ .Title }}</a>
+      <span class="related-date">({{ .Date.Format "2006-01-02" }})</span>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+{{ end }}

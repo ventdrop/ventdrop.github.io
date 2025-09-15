@@ -1,0 +1,101 @@
+{{ define "main" }}
+<div class="posts-page">
+  <header class="page-header">
+    <h1 class="page-title rainbow-text">{{ .Title | default "All Posts" }}</h1>
+    
+    {{ if .Content }}
+    <div class="page-description">
+      {{ .Content }}
+    </div>
+    {{ end }}
+    
+    <div class="posts-count">
+      📊 Total Posts: <strong>{{ len .Pages }}</strong>
+    </div>
+  </header>
+
+  <div class="posts-container">
+    {{ if .Pages }}
+    {{ range .Pages }}
+    <article class="post-summary">
+      <header class="post-summary-header">
+        <h2 class="post-summary-title">
+          <a href="{{ .Permalink }}" class="post-link">{{ .Title }}</a>
+          {{ if .Params.new }}
+          <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" class="new-indicator" onerror="this.style.display='none'">
+          {{ end }}
+        </h2>
+        
+        <div class="post-summary-meta">
+          <span class="post-date">📅 {{ .Date.Format "Jan 2, 2006" }}</span>
+          
+          {{ if .Params.author }}
+          <span class="post-author">👤 {{ .Params.author }}</span>
+          {{ end }}
+          
+          {{ if .ReadingTime }}
+          <span class="reading-time">⏱️ {{ .ReadingTime }} min read</span>
+          {{ end }}
+        </div>
+        
+        {{ if .Params.tags }}
+        <div class="post-tags">
+          🏷️
+          {{ range $index, $tag := .Params.tags }}
+          {{ if gt $index 0 }}, {{ end }}
+          <a href="{{ "/tags/" | relURL }}{{ $tag | urlize }}" class="tag-link">{{ $tag }}</a>
+          {{ end }}
+        </div>
+        {{ end }}
+      </header>
+
+      <div class="post-summary-content">
+        {{ if .Summary }}
+        <p>{{ .Summary | truncate 200 }}</p>
+        {{ else }}
+        <p>{{ .Content | plainify | truncate 200 }}</p>
+        {{ end }}
+        
+        <div class="read-more">
+          <a href="{{ .Permalink }}" class="read-more-link">📖 Read More →</a>
+        </div>
+      </div>
+    </article>
+    {{ end }}
+    
+    {{ else }}
+    <div class="no-posts">
+      <h3>🚫 No Posts Found</h3>
+      <p>Looks like there aren't any posts yet! Check back later for awesome content!</p>
+      
+      <div class="under-construction">
+        <img src="{{ "images/under-construction.gif" | relURL }}" alt="Under Construction">
+        <p>This section is still under construction!</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+  
+  <!-- Archive by Year -->
+  {{ if .Pages }}
+  <aside class="posts-archive">
+    <h3 class="archive-title">📁 Archive</h3>
+    <div class="archive-years">
+      {{ range .Pages.GroupByDate "2006" }}
+      <div class="archive-year">
+        <h4>{{ .Key }}</h4>
+        <ul class="archive-list">
+          {{ range .Pages }}
+          <li>
+            <span class="archive-date">{{ .Date.Format "Jan 2" }}</span> - 
+            <a href="{{ .Permalink }}" class="archive-link">{{ .Title }}</a>
+          </li>
+          {{ end }}
+        </ul>
+      </div>
+      {{ end }}
+    </div>
+  </aside>
+  {{ end }}
+</div>
+{{ end }}

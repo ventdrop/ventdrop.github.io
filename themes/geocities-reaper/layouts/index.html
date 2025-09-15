@@ -1,0 +1,109 @@
+{{ define "main" }}
+<div class="homepage">
+  <div class="welcome-section">
+  <h2 class="section-title">
+    <img src="{{ "images/reaper.gif" | relURL }}" alt="Reaper GIF">
+    <img src="{{ "images/pc.gif" | relURL }}" alt="PC GIF">
+    <br>
+    another infosec blog
+  </h2>    
+  {{ if .Site.Params.welcome_message }}
+    <div class="welcome-message">
+     <pre>{{ .Site.Params.welcome_message }}</pre>
+    </div>
+    {{ else }}
+    <div class="welcome-message">
+      <p class="marquee-text">Welcome to my totally awesome homepage! Check out my cool stuff below!</p>
+    </div>
+    {{ end }}
+    
+    <div class="new-feature">
+      <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" onerror="this.style.display='none'">
+      <span class="blink">NEW! Updated with fresh content!</span>
+      <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" onerror="this.style.display='none'">
+    </div>
+  </div>
+
+  <div class="content-sections">
+    <!-- Latest Posts Section -->
+    <div class="content-box">
+      <h3 class="box-title">Latest Posts</h3>
+      <div class="posts-list">
+        {{ $posts := where .Site.RegularPages "Section" "posts" }}
+        {{ range first 5 $posts }}
+        <div class="post-item">
+          <span class="post-date">[{{ .Date.Format "2006-01-02" }}]</span>
+          <a href="{{ .Permalink }}" class="post-link">{{ .Title }}</a>
+          {{ if .Params.new }}
+          <img src="{{ "images/new.gif" | relURL }}" alt="NEW!" class="new-indicator" onerror="this.style.display='none'">
+          {{ end }}
+        </div>
+        {{ end }}
+        
+        {{ if ge (len $posts) 5 }}
+        <div class="view-all">
+          <a href="{{ "/posts/" | relURL }}" class="view-all-link">View All Posts →</a>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- About Me Section -->
+    <div class="content-box">
+      <h3 class="box-title">About Me</h3>
+      <div class="about-content">
+        {{ if .Site.Params.about }}
+        <p>{{ .Site.Params.about | markdownify }}</p>
+        {{ else }}
+        <p>Welcome! I'm a web enthusiast bringing back the glory days of the 90s internet. 
+        This is my personal space where I share my thoughts, projects, and cool links I've found!</p>
+        {{ end }}
+        
+        <div class="personal-stats">
+          <p>Location: {{ .Site.Params.location | default "Cyberspace" }}</p>
+          <p>Current Mood: <span class="mood-text">{{ .Site.Params.mood | default "Totally Rad!" }}</span></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured Links -->
+    <div class="content-box">
+      <h3 class="box-title">Cool Links</h3>
+      <div class="links-section">
+        {{ if .Site.Params.featured_links }}
+        {{ range .Site.Params.featured_links }}
+        <div class="link-item">
+          <a href="{{ .url }}" class="featured-link" target="_blank">{{ .name }}</a>
+          <span class="link-description"> - {{ .description }}</span>
+        </div>
+        {{ end }}
+        {{ else }}
+        <div class="link-item">
+          <a href="https://open.spotify.com/artist/3kJVznksZaJkAcEgOp9GqW" class="featured-link">b fake (Spotify)</a>
+          <span class="link-description"> - My music :)</span>
+        </div>
+        <div class="link-item">
+          <a href="https://music.apple.com/us/artist/b-fake/1742996546" class="featured-link">b fake (Apple Music)</a>
+          <span class="link-description"> - My music :)</span>
+        </div>
+        <div class="link-item">
+          <a href="https://music.youtube.com/channel/UChBRSw38BQ4EK-cBxmff1vA" class="featured-link">b fake (YouTube Music)</a>
+          <span class="link-description"> - My music :)</span>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+
+    <!-- Random Quote/Fact -->
+    <div class="content-box quote-box">
+      <h3 class="box-title">Random Quote</h3>
+      <div class="quote-content">
+        <p class="quote-text">
+          "{{ .Site.Params.quote | default "The best way to predict the future is to create it." }}"
+        </p>
+        <p class="quote-author">- {{ .Site.Params.quote_author | default "Random Internet Wisdom" }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+{{ end }}
