@@ -44,7 +44,3 @@ theme = "geocities-reaper"
     icon = "github"
     name = "Github"
     url = "https://github.com/ventdrop"
-  [[params.social]]
-    icon = "twitter"
-    name = "Twitter"
-    url = "https://twitter.com/ventdrop"

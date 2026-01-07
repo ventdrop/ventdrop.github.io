@@ -21,9 +21,18 @@ body {
   overflow-x: hidden;
 }
 
+.container, 
+.content, 
+.single-post,
+.post-content {
+  max-width: 1100px !important; 
+  width: 95% !important; /* Ensures it doesn't touch the screen edges on mid-size monitors */
+  margin: 0 auto !important;
+}
+
 /* Container */
 .container {
-  max-width: 800px;
+  max-width: 1200px;
   margin: 0 auto;
   background: #1A1A1A; /* Dark gray background */
   border: 5px ridge #EAE0D0; /* Bone white border */
@@ -139,6 +148,44 @@ body {
 .nav-link.active {
   background: #4A2C59;
   border: 2px inset #EAE0D0;
+}
+
+/* CRT Terminal Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 0.95em;
+    border: 2px solid #4A2C59; 
+    color: #EAE0D0; 
+    background-color: #000;
+    /* Scanline */
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 3px 100%;
+}
+
+table thead tr {
+    background-color: #8B0000; 
+    text-align: left;
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 2px solid #EAE0D0;
+}
+
+table th, table td {
+    padding: 12px 15px;
+    border: 1px solid #333; 
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: rgba(74, 44, 89, 0.1); 
+}
+
+/* Hover effect */
+table tbody tr:hover {
+    background-color: #4A2C59;
+    color: #fff;
 }
 
 /* Visitor Counter */
