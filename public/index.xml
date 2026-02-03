@@ -6,8 +6,15 @@
     <description>Recent content on Vent Drop | an infosec blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 07 Jan 2026 17:38:40 +1100</lastBuildDate>
+    <lastBuildDate>Tue, 03 Feb 2026 17:12:41 +1100</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DLL Sideloading - JRTools.dll</title>
+      <link>http://localhost:1313/posts/jriver/</link>
+      <pubDate>Tue, 03 Feb 2026 17:12:41 +1100</pubDate>
+      <guid>http://localhost:1313/posts/jriver/</guid>
+      <description>&lt;h2 id=&#34;overview&#34;&gt;Overview&lt;/h2&gt;&#xA;&lt;p&gt;Just a quick blog post to provide research for a &lt;a href=&#34;https://hijacklibs.net/&#34;&gt;HijackLibs&lt;/a&gt; submission. The software &lt;code&gt;J River Media Center&lt;/code&gt;, which can be downloaded from &lt;a href=&#34;https://www.jriver.com/download.html&#34;&gt;here&lt;/a&gt; contains an executable (&lt;code&gt;JRService.exe&lt;/code&gt;) that is vulnerable to DLL sideloading. DLL sideloading matters because it allows attackers to run malicious code under the cover of a trusted, digitally signed program, making the attack nearly invisible to many security tools that only scrutinize the &amp;ldquo;safe&amp;rdquo; executable.&lt;/p&gt;&#xA;&lt;h2 id=&#34;testing&#34;&gt;Testing&lt;/h2&gt;&#xA;&lt;p&gt;During testing, the file &lt;code&gt;MediaCenter350038-x64.exe&lt;/code&gt; was downloaded and used. This file has the following SHA256: &lt;code&gt;5ba63f08692ae6a7d70d0b9c7414d85928ae86e59d5e4aef59e6b5a98e2f1e09&lt;/code&gt;.&#xA;When this setup installer is run and the application is installed, files are created in the directory &lt;code&gt;C:\Program Files\J River\Media Center 35&lt;/code&gt;.&#xA;When the application is installed using this method, and the files &lt;code&gt;JRService.exe&lt;/code&gt; and &lt;code&gt;JRTools.dll&lt;/code&gt; exist in those locations, the application will load this dll no matter where else these files are placed on disk.&#xA;During testing, the SHA256 hash of &lt;code&gt;JRService.exe&lt;/code&gt; was &lt;code&gt;73dc3291cbc89663ecec0c5169000cc0bf153dab7decefabd31fc12bae2fc548&lt;/code&gt; &lt;a href=&#34;https://www.virustotal.com/gui/file/73dc3291cbc89663ecec0c5169000cc0bf153dab7decefabd31fc12bae2fc548&#34;&gt;VT&lt;/a&gt; and the SHA256 hash of &lt;code&gt;JRTools.dll&lt;/code&gt; was &lt;code&gt;e422bf2cc1dec97c132edb7345f180dd0c6faccd34ad62a874fe6420a5da16a9&lt;/code&gt; &lt;a href=&#34;https://www.virustotal.com/gui/file/e422bf2cc1dec97c132edb7345f180dd0c6faccd34ad62a874fe6420a5da16a9&#34;&gt;VT&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     <item>
       <title>FortiGate DFIR Notes</title>
       <link>http://localhost:1313/posts/forti/</link>

@@ -3,18 +3,27 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>http://localhost:1313/posts/</loc>
-    <lastmod>2026-01-07T17:38:40+11:00</lastmod>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/dfir/</loc>
-    <lastmod>2026-01-07T17:38:40+11:00</lastmod>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/posts/forti/</loc>
-    <lastmod>2026-01-07T17:38:40+11:00</lastmod>
+    <loc>http://localhost:1313/tags/dll-sideloading/</loc>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/jriver/</loc>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
-    <lastmod>2026-01-07T17:38:40+11:00</lastmod>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/tags/threat-hunting/</loc>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/</loc>
+    <lastmod>2026-02-03T17:12:41+11:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/posts/forti/</loc>
     <lastmod>2026-01-07T17:38:40+11:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/bumblebee/</loc>
