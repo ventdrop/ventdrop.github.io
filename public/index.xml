@@ -6,8 +6,15 @@
     <description>Recent content on Vent Drop | an infosec blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 03 Feb 2026 17:12:41 +1100</lastBuildDate>
+    <lastBuildDate>Sat, 07 Feb 2026 14:06:28 +1100</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Malware Roulette #1 - GachiLoader pt. 1</title>
+      <link>http://localhost:1313/posts/gachiloader/</link>
+      <pubDate>Sat, 07 Feb 2026 14:06:28 +1100</pubDate>
+      <guid>http://localhost:1313/posts/gachiloader/</guid>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;p&gt;I was randomly browsing AnyRun looking for something to poke at, when I came across &lt;a href=&#34;https://app.any.run/tasks/02b1a4fa-ed88-459a-b1fa-bc51a38aa188&#34;&gt;this&lt;/a&gt;. The URL being scanned was hxxps://anysoft[.]click, which appeared to redirect to a file hosted on MediaFire. It&amp;rsquo;s unclear how a user might have landed at this site. AnyRun sandbox flagged some powershell commands as &amp;lsquo;Scarface Stealer&amp;rsquo;, which may or may not be accurate attribution.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/static/gachiloader/Image2.png&#34; alt=&#34;caption&#34;&gt;&lt;/p&gt;&#xA;&lt;h2 id=&#34;node-malware&#34;&gt;Node Malware&lt;/h2&gt;&#xA;&lt;p&gt;In any case, the file to be downloaded from MediaFire was &lt;code&gt;Set-Up.rar&lt;/code&gt;. This .rar archive contains a single file, &lt;code&gt;Set-Up.msi&lt;/code&gt;, a Microsoft Installer file. When inspecting this .msi, we see embedded files, which we can extract using a tool such as &lt;code&gt;LessMsi&lt;/code&gt;. This contained the following four files:&lt;/p&gt;</description>
+    </item>
     <item>
       <title>DLL Sideloading - JRTools.dll</title>
       <link>http://localhost:1313/posts/jriver/</link>
