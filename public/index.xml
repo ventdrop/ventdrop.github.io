@@ -6,8 +6,15 @@
     <description>Recent content on Vent Drop | an infosec blog</description>
     <generator>Hugo</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 07 Feb 2026 14:06:28 +1100</lastBuildDate>
+    <lastBuildDate>Mon, 09 Feb 2026 16:34:16 +1100</lastBuildDate>
     <atom:link href="http://localhost:1313/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gachiloader pt2</title>
+      <link>http://localhost:1313/posts/gachiloaderpt2/</link>
+      <pubDate>Mon, 09 Feb 2026 16:34:16 +1100</pubDate>
+      <guid>http://localhost:1313/posts/gachiloaderpt2/</guid>
+      <description>&lt;h2 id=&#34;intro&#34;&gt;Intro&lt;/h2&gt;&#xA;&lt;p&gt;We&amp;rsquo;re back. &lt;a href=&#34;https://medium.com/@rcgatenby/malware-roulette-1-gachiloader-pt-1-84cba7e7cd17&#34;&gt;When we left this sample in part one&lt;/a&gt;, we had:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Extracted files from the original .msi installer&lt;/li&gt;&#xA;&lt;li&gt;Dynamically analysed the obfuscated JavaScript file&lt;/li&gt;&#xA;&lt;li&gt;Spoofed anti-debugging call checks to drop the loader&lt;/li&gt;&#xA;&lt;li&gt;Got the loader to drop the final payload&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;p&gt;After spending some time statically and dynamically analysing this sample, I was able to uncover both the C2 and the malware variant. TLDR; as expected, the malware family was Rhadamanthys (an infostealer). This blog will focus mostly on the immense number of anti-debugging checks in the &amp;ldquo;final payload&amp;rdquo;, as touched on briefly in pt1. Hope you enjoy!&lt;/p&gt;</description>
+    </item>
     <item>
       <title>Malware Roulette #1 - GachiLoader pt. 1</title>
       <link>http://localhost:1313/posts/gachiloader/</link>
