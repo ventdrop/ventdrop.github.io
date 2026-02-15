@@ -124,7 +124,7 @@ Once I now hit F9, I execute all the way to this call and if I hit F9 again a fe
 ![caption](/static/gachiloader2/c2.png)
 ![caption](/static/gachiloader2/telegraph.png)
 
-If we run until we hit the next breakpoint and look at the stack, we actually see a .zip file that was created on disk in `%APPDATA%\Local\Temp`. This contains all of the data that the TA is attempting to exfiltrate to their C2 server. Running a few more times we catch the domain `inactivesophisticatedsolutions101[.]com`, likely the C2 domain.
+If we run until we hit the next breakpoint and look at the stack, we actually see a .zip file that was created on disk in `%APPDATA%\Local\Temp`. This contains all of the data that the TA is attempting to exfiltrate to their C2 server. Running a few more times we catch the domain `inactivesophisticatedsolutions101[.]com`, likely the C2 domain. Edit: This is actually the fallback C2 domain, more on this later.
 
 ![caption](/static/gachiloader2/stack.png)
 
@@ -143,11 +143,28 @@ UserInformation shows this build to be "Gachimanthys".
 
 ![caption](/static/gachiloader2/lol.png)
 
+## C2's
+
+Using Frida hooks, I was able to decrypt all the encrypted strings in the binary and locate the C2 resolvers. The malware uses a Dead Drop Resolver pattern with a hardcoded fallback:
+
+Step 1 — DDR URLs decrypted at runtime:
+
+hxxps://telegra[.]ph/Endangered-Animals-01-05 (seed 0x918985534d0d3fa1)
+hxxps://telegra[.]ph/Natural-Wonders-01-05 (seed 0x8fc5f98d432d5387)
+
+Step 2 — Malware fetches the page and extracts the hex string from the HTML title tag. The function `sub_140042210` handles this: it opens the URL with WinINet, reads the response, searches for delimiter markers (also runtime-decrypted), and extracts a 64-character hex string.
+Step 3 — AES-256-CBC decryption in `sub_1400511E0`:
+
+The campaign identifier `4ba66c65842a03f81b59c01b798915f5` (seed 0x777F25175317275B) serves double duty as both the C2 URL path component and the AES key material. It's unhexlified to 16 raw bytes, then SHA-256 hashed to produce a 32-byte AES-256 key. The 64-char hex strings from the telegra.ph titles are unhexlified to 32 bytes of ciphertext. Decrypted with AES-256-CBC, null IV, PKCS7 padding.
+
+Step 4 — Fallback: If both DDR pages are unreachable, the malware falls back to inactivesophisticatedsolutions101[.]com (seed 0x570D9D1BC1DBF72B), hardcoded in the binary.
+
 ## Indicators
 
 ```
+hxxps://jesstheromantic[.]com
+hxxps://colorfulglowllc[.]com
 hxxps://inactivesophisticatedsolutions101[.]com
 hxxps://telegra[.]ph/Endangered-Animals-01-05
 hxxps://telegra[.]ph/Natural-Wonders-01-05
 ```
-
