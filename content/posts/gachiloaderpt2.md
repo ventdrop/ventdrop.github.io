@@ -1,6 +1,7 @@
 ---
 title: "Gachiloader pt2"
 date: 2026-02-09T16:34:16+11:00
+tags: ['reverse_engineering', 'DFIR', 'threat_hunting']
 draft: false
 ---
 

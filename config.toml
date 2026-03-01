@@ -44,3 +44,8 @@ theme = "geocities-reaper"
     icon = "github"
     name = "Github"
     url = "https://github.com/ventdrop"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      footnote = true
